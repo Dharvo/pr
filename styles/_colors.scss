@@ -1,0 +1,67 @@
+$blaq: #000;
+$blaq2: #000e;
+$blaq3: #000d;
+$blaq4: #000c;
+$blaq5: #000a;
+
+$black1: #111;
+$black2: rgba(17, 17, 17, 0.9);
+$black3: rgba(17, 17, 17, 0.8);
+$black4: rgba(17, 17, 17, 0.7);
+$black5: rgba(17, 17, 17, 0.5);
+
+$black22: #222;
+$gray: #808080;
+$gray-a: #aaa;
+$gray-b: #bbb;
+$gray-c: #ccc;
+$gray-d: #ddd;
+$gray-e: #eee;
+$white: #fafafa;
+$white90: rgba(255, 255, 255, 0.9);
+$white80: rgba(255, 255, 255, 0.8);
+$white70: rgba(255, 255, 255, 0.7);
+$white60: rgba(255, 255, 255, 0.5);
+
+$gold: #ffd609;
+$gold2: #e9c304;
+$gold3: #c7a80f;
+
+@font-face {
+	font-family: Cast;
+	src: url('../assests/Castillo.ttf');
+}
+@font-face {
+	font-family: Cassandra;
+	src: url('../assests/Cassandra\ Personal\ Use.ttf');
+}
+@font-face {
+	font-family: Gills;
+	src: url('../assests/Gill-Sans/Gill\ Sans.otf');
+}
+@font-face {
+	font-family: GillsMid;
+	src: url('../assests/Gill-Sans/Gill\ Sans\ Medium.otf');
+}
+
+@mixin imageBtn($marg: 0.7rem, $pad: 7px 7px 5px, $bg: rgba(17, 17, 17, 0.25)) {
+	position: absolute;
+	margin: $marg;
+	padding: $pad;
+	border: none;
+	border-radius: 50%;
+	background: $bg;
+	z-index: 2;
+	&:hover {
+		background: $black5;
+	}
+}
+@mixin flex($dir: row, $jus: space-between, $align: center) {
+	display: flex;
+	flex-direction: $dir;
+	justify-content: $jus;
+	align-items: $align;
+}
+@mixin trans($dig: 450ms) {
+	transition: all $dig ease-in-out;
+}

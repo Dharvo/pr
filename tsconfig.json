@@ -1,0 +1,29 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": { "@/layout/*": ["components/layout/*"] },
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"incremental": true
+	},
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"pages/admin/Panel.jsx",
+		"pages/admin/Authenticate.jsx",
+		"components/slides/Slides.jsx"
+	],
+	"exclude": ["node_modules"]
+}
