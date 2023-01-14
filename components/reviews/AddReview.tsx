@@ -8,11 +8,7 @@ type Props = {
 	show: boolean
 	set: Function
 }
-const AddReview = (
-	// props: boolean
-
-	{ show, set }: Props
-) => {
+const AddReview = ({ show, set }: Props) => {
 	const [name, setName] = useState('')
 	return (
 		<Modal show={show}>
@@ -20,23 +16,11 @@ const AddReview = (
 				<button className='close' onClick={() => set(!show)}>
 					<CgClose />
 				</button>
-				{/* <form onSubmit={createPortImage}> */}
 				<form>
 					<input type='text' />
-					{/* <Input
-						label='Image Name'
-						placeholder='Set a Name'
-						value={name}
-						setValue={setName}
-						focus={focusName}
-						setFocus={setFocusName}
-						icon={<BiRename />}
-						pass={false}
-					/> */}
 					<input type='file' id={`${name}-ID`} />
 					<input type='submit' value='Submit' />
 				</form>
-				{/* {imgUrl && <div>{imgUrl}</div>} */}
 			</div>
 		</Modal>
 	)

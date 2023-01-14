@@ -38,7 +38,7 @@ const Port = ({ name, data }: PortProps) => {
 					// console.log('slideObj', imgLink)
 					return (
 						<div key={i} className={styles.image__loader}>
-							<Loading prop={true} />
+							<Loading props={true} />
 						</div>
 					)
 				}
@@ -64,7 +64,7 @@ const Port = ({ name, data }: PortProps) => {
 				<BsPlusLg />
 				{/* </div> */}
 			</div>
-			<AddPort show={show} setShown={setShown} />
+			<AddPort portName={name} show={show} setShown={setShown} />
 			<DelPort name={name} show={del} setShown={setDel} />
 			{/* </Modal> */}
 		</div>

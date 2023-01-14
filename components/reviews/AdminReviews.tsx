@@ -42,15 +42,13 @@ const AdminReviews = () => {
 				))}
 
 				{/* DEFAULT */}
-
 				<div className={styles.addDefault} onClick={() => setReev(!reev)}>
 					<div className={styles.default__review}>
 						<BsPlusLg />
 					</div>
 					<aside>
-						{/* <sub> */}
 						Add Client Review <br />
-						Here !{/* </sub> */}
+						Here !
 					</aside>
 				</div>
 

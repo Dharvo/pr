@@ -16,11 +16,10 @@ $slideHeight: 45vh;
 		left: auto !important;
 		width: 20vw;
 		transform: rotate(180deg);
-		// right: -2rem;
 		right: 0;
 		overflow: hidden;
 		top: 0;
-		// z-index: 1;
+		z-index: -1;
 	}
 	.Module {
 		padding: 0 2.2rem 2rem;
@@ -31,7 +30,6 @@ $slideHeight: 45vh;
 			color: $blaq4;
 			z-index: 100;
 			padding-bottom: 5px;
-			// font-weight: 700;
 		}
 		:global(p) {
 			font-family: Gills;
@@ -52,26 +50,13 @@ $slideHeight: 45vh;
 					object-fit: contain;
 					justify-self: center;
 					transition: all 250ms ease-in-out;
-					// height: auto;
-					// width: auto;
 				}
 				&:hover {
 					box-shadow: 0 0 10px 0.1px $black5;
 					:global(img) {
-						// height: 48vh;
-						// scale: 1.2;
 						transform: scale(1.025);
 					}
 				}
-				// :global(button) {
-				// 	position: absolute;
-				// 	margin: 0.7rem;
-				// 	padding: 7px 7px 5px;
-				// 	border: none;
-				// 	border-radius: 50%;
-				// 	background: transparent;
-				// 	z-index: 2;
-				// }
 				.slides__action__update {
 					@include imageBtn;
 					right: 0;
@@ -138,41 +123,37 @@ $slideHeight: 45vh;
 			}
 		}
 		.portfolioNav {
-			width: 95%;
-			display: flex;
-			height: auto;
-			background: linear-gradient(60deg, $gray-e, $gray-e, $white, white);
-			z-index: -1;
-			.crossNav {
-				cursor: pointer;
-				padding: 0.7rem 0.8rem;
-				width: fit-content;
-				& span {
-					margin-right: 0.7rem;
-					font-family: Gills;
-				}
-				& button {
-					border: none;
-					border-radius: 50%;
-					padding: 5px 5px 3px;
-				}
-				&.whiten {
-					background-color: white;
+			@include flex;
+			> div {
+				width: 95%;
+				display: flex;
+				height: auto;
+				background: linear-gradient(60deg, $gray-b, $gray-c, $gray-e, $white, white);
+				z-index: -1;
+				.crossNav {
+					cursor: pointer;
+					padding: 0.7rem 0.8rem;
+					width: fit-content;
+					& span {
+						margin-right: 0.7rem;
+						font-family: Gills;
+					}
+					& button {
+						border: none;
+						border-radius: 50%;
+						padding: 5px 5px 3px;
+					}
+					&.whiten {
+						background-color: white;
+					}
 				}
 			}
 			.folderTouch {
-				// height: 50px;
-				// position: absolute;
-
-				// & span {
 				clip-path: polygon(0 0, 80% 1%, 100% 100%, 0 100%);
 				border-radius: 3px 9px 0 0;
-				// width: 100px;
 				box-shadow: 15px -15px 15px 1px $gray-b;
 				background: white;
-				// height: 40px;
 				display: block;
-				// }
 				& > .crossNav {
 					padding-right: 2.2rem;
 				}
@@ -182,11 +163,30 @@ $slideHeight: 45vh;
 			}
 			.colorFold {
 				background-color: white;
-				// & > .crossNav {
-				// }
 			}
 		}
 
+		.addFolder {
+			background: $black3;
+			margin: auto 2rem;
+			border: none;
+			padding: 0.6rem 0.7rem 0.5rem;
+			border-radius: 4px;
+			box-shadow: 0 0 3px 0.5px $blaq2;
+			@include trans(200ms);
+			&:hover {
+				background: $blaq2;
+				box-shadow: 0 0 7px 0.6px $blaq;
+				svg {
+					transform: scale(1.07);
+					color: $gold2;
+				}
+			}
+			svg {
+				font-size: 1rem;
+				color: $white80;
+			}
+		}
 		.portfolio__wrapper {
 			margin: 2rem 0 2rem 1rem;
 			display: flex;
@@ -481,6 +481,7 @@ $slideHeight: 45vh;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		overflow-y: hidden;
 	}
 	.image__loader {
 		width: 15%;
@@ -490,7 +491,6 @@ $slideHeight: 45vh;
 		justify-content: center;
 	}
 }
-// }
 .add__slide__form,
 .add__portfolio__image {
 	width: 60%;
@@ -538,9 +538,20 @@ $slideHeight: 45vh;
 		transition: all 170ms ease-in-out;
 		align-items: center;
 		&:hover {
+			cursor: pointer;
 			background: linear-gradient($black2, $blaq);
 			color: $gold3;
 		}
+	}
+	h2 {
+		font-family: Gills;
+		font-size: 2rem;
+		text-align: center;
+		padding-bottom: 1.8rem;
+	}
+	span {
+		margin: 0 auto 1.5rem 8rem;
+		display: inline-block;
 	}
 }
 
@@ -574,24 +585,3 @@ $slideHeight: 45vh;
 		margin-right: -3px;
 	}
 }
-
-// .button__default{
-// 	padding: 0.8rem 4.5rem !important;
-// 			background: linear-gradient($black4, $black22);
-// 			border: none !important;
-// 			border-radius: 7px;
-// 			height: auto !important;
-// 			color: $white70;
-// 			font-size: 15px;
-// 			font-family: 'Gills';
-// 			margin: 1.8rem auto;
-// 			// width: fit-content !important;
-// 			// justify-self: center;
-// 			display: flex;
-// 			transition: all 170ms ease-in-out;
-// 			align-items: center;
-// 			&:hover {
-// 				background: linear-gradient($black2, $blaq);
-// 				color: $gold3;
-// 			}
-// }

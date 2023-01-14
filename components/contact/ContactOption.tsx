@@ -25,15 +25,12 @@ const ContactOption = ({ name, value, setValue, icon, shown, placeholder }: Opti
 					name={name}
 					value={value}
 					placeholder={placeholder}
-					// onClick={() => setFocus(true)}
-					// onBlur={() => setFocus(false)}
 					onChange={(e) => setValue(e.target.value)}
 				/>
 				<div className={styles.actions}>
 					<span className={`${styles.icon} ${opted ? styles.opted : ''}`}>{icon()}</span>
 					<label className={styles.switch}>
 						<input type='checkbox' onClick={activateOpt} />
-						{/* onClick='changeVal()' */}
 						<span className={`${styles.slider} ${styles.round}`} />
 					</label>
 				</div>

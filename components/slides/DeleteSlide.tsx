@@ -116,15 +116,22 @@ const DeleteSlide = ({ show, setShown, name, docId }: modal['props']) => {
 					<CgClose />
 				</button>
 				<h2>Are you sure you want to delete Slide {name}</h2>
-
-				<input type='button' value='Yes' onClick={() => verifyDelete(docId)} />
-				<input
-					type='button'
-					value='No'
-					onClick={() => {
-						setShown(!show)
-					}}
-				/>
+				<div style={{ display: 'flex' }}>
+					<input
+						type='submit'
+						// style={{ marginRight: '1.8rem' }}
+						value='Yes'
+						onClick={() => verifyDelete(docId)}
+					/>
+					<input
+						type='submit'
+						// style={{ margin: '1.8rem' }}
+						value='No'
+						onClick={() => {
+							setShown(!show)
+						}}
+					/>
+				</div>
 			</div>
 			{/* </div> */}
 		</Modal>

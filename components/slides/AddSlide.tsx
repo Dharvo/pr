@@ -8,6 +8,7 @@ import { firebase, firestore, storage } from '../../firebase/firebaseConfig'
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage'
 import {
 	DocumentData,
+	CollectionReference,
 	QueryDocumentSnapshot,
 	query,
 	limit,
@@ -20,6 +21,10 @@ import {
 	DocumentReference,
 } from 'firebase/firestore'
 import Modal from '../Modal'
+import { toast, ToastContainer } from 'react-toastify'
+import useDecypher from '../../components/useDecypher'
+import 'react-toastify/dist/ReactToastify.css'
+import ErrorBoundary from 'components/ErrorBoundary'
 // import Loading from 'components/Loading'
 type modal = {
 	props: {
@@ -41,52 +46,107 @@ const AddSlide = ({ show, setShown }: modal['props']) => {
 	const createSlide = async (e: any) => {
 		// const handleSubmit = (e) => {
 		e.preventDefault()
+
 		const file = e.target[1]?.files[0]
-
-		if (!file) return
-
-		const storageRef = ref(storage, `Slides/${file.name}`)
+		if (!name) {
+			toast.error('Please Add an Image Name')
+			return
+		}
+		if (!file) {
+			toast.error('Please Add an Image')
+			return
+		}
+		const storageRef = ref(storage, `Slides/${name}`)
 		const uploadTask = uploadBytesResumable(storageRef, file)
 
-		uploadTask.on(
-			'state_changed',
-			(snapshot) => {
-				const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-				setProgresspercent(progress)
-			},
-			(error) => {
-				alert(error)
-			},
+		navigator.onLine
+			? uploadTask.on(
+					'state_changed',
+					(snapshot) => {
+						const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+						setProgresspercent(progress)
+					},
+					(error) => {
+						alert(error)
+					},
 
-			async () => {
-				await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-					setImgUrl(downloadURL)
-				})
-			}
-		)
-
+					async () => {
+						await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+							setImgUrl(downloadURL)
+						})
+					}
+			  )
+			: toast.error(`Image Upload unsuccessful, You're Offline...`)
 		//ADD TO FIRESTORE
 		const payload = {
 			name: name,
 			imgLink: imgUrl,
 			visible: true,
 		}
-		console.table(payload)
+		const slidesCollection: CollectionReference<DocumentData> = collection(firestore, 'Slides/')
+		// console.log(`new Errorrrr`)
 
-		const SlidesList: DocumentReference<DocumentData> = doc(firestore, 'Slides/')
-
-		// const slidesCollection = collection(firestore, 'Slides')
-		// addDoc(slidesCollection, payload)
-		// 	.then((data) => console.log(data))
-		// 	.catch((err) => console.error)
-		// }
-
-		await setDoc(SlidesList, payload)
-			.then((data) => console.log(data))
-			.catch((err) => console.error(err))
-		console.log('Data sending successful')
-		// console.log('file', !file)
-		//Reset Input Fields
+		try {
+			if (navigator.onLine) {
+				await addDoc(collection(slidesCollection, '/'), payload).catch((err) => {
+					console.log(`Error Found: `, err)
+				})
+				toast.success('Image Upload Successful')
+			}
+			toast.error(`Ooops You're Offline...`)
+			// !
+			// 	? null
+			// 	:
+			// .then((data: DocumentReference<DocumentData>) =>console.log(data))
+			// onfulfilled ?: ((data: DocumentReference<DocumentData>) =>
+			// , onrejected?: ((err){
+			// 	if (err?.code === 'auth/invalid-email') {
+			// 			toast.error('Wrong! Please use a valid email')
+			// 		} else if (err?.code === 'auth/wrong-password') {
+			// 				toast.error('Wrong! Try another password')
+			// 			} else if (err?.code === 'auth/network-request-failed') {
+			// 					toast.error('Oops, You are Offline')
+			// 				} else {
+			// 						toast.error(err)
+			// 					}// 				}
+		} catch (err) {
+			console.log(`new Error `, err)
+			// .catch(
+			// function (err) {
+			// 	if (err?.code === 'auth/invalid-email') {
+			// 		toast.error('Wrong! Please use a valid email')
+			// 	} else if (err?.code === 'auth/wrong-password') {
+			// 		toast.error('Wrong! Try another password')
+			// 	} else if (err?.code === 'auth/network-request-failed') {
+			// 		toast.error('Oops, You are Offline')
+			// 	} else {
+			// 		toast.error(err)
+			// 	}
+			// 	// }
+			// 	console.log('We have found an error')
+			// 	console.log('We have found an error')
+			// 	// useDecypher(error.code)
+			// }
+			// (err) => useDecypher(err)
+			// )
+			// .catch((err) => {
+			// 	// useDecypher(err?.code)
+			// 	console.log(`Error Found: `, err)
+			// })
+			// } catch (err) {
+			// 	console.log(`new Error ${err}`)
+		}
+		setTimeout(() => {
+			//Reset Input Fields
+			//Close Modal
+			//Reset progresspercent n img link to ''
+			setName('')
+			setImgUrl('')
+			setShown(!show)
+			setProgresspercent(0)
+		}, 10000)
+		// console.log(error)
+		// useDecypher(error)9
 	}
 	// var elem: any = document.querySelector('#portal')
 	// .getElementById('portal')
@@ -98,39 +158,54 @@ const AddSlide = ({ show, setShown }: modal['props']) => {
 	// if (typeof window === 'undefined') return <Loading prop={false} />
 
 	// const elem: any = globalThis?.window?.document.getElementById('portal')
+
+	const closeModal = () => {
+		setShown(!show)
+		setName('')
+		setProgresspercent(0)
+	}
+
 	return (
 		<Modal show={show}>
-			<div className={styles.add__slide__form}>
-				<button className='close' onClick={() => setShown(!show)}>
-					<CgClose />
-				</button>
-				<form onSubmit={createSlide}>
-					<Input
-						label='Image Name'
-						placeholder='Set a Name'
-						value={name}
-						setValue={setName}
-						focus={focusName}
-						setFocus={setFocusName}
-						icon={<BiRename />}
-						pass={false}
+			{/* <ToastContainer /> */}
+			<ErrorBoundary>
+				<div className={styles.add__slide__form}>
+					<button className='close' onClick={closeModal}>
+						<CgClose />
+					</button>
+					<form onSubmit={createSlide}>
+						<Input
+							label='Image Name'
+							placeholder='Set a Name'
+							value={name}
+							setValue={setName}
+							focus={focusName}
+							setFocus={setFocusName}
+							icon={<BiRename />}
+							pass={false}
+						/>
+						<input type='file' name={name} id={`${name}-ID`} />
+						<input type='submit' value='Submit' />
+					</form>
+
+					{/* {imgUrl && <div>{imgUrl}</div>} */}
+					{/* <> */}
+					{/* <span */}
+					<div
+						style={{
+							width: `${progresspercent}%`,
+							height: '4px',
+							border: '0.5px solid #777',
+							backgroundColor: '#333',
+							borderRadius: '3px',
+						}}
 					/>
-					<input type='file' name={name} id={`${name}-ID`} />
-					<input type='submit' value='Submit' />
-				</form>
-				{imgUrl && <div>{imgUrl}</div>}
-			</div>
-			<>
-				<span
-					style={{
-						width: `${progresspercent}px`,
-						height: '7px',
-						border: '0.5px solid #aaa',
-						backgroundColor: '#777',
-						borderRadius: '3px',
-					}}
-				></span>
-			</>
+					{imgUrl && <div>Image upload successfull, Find at `{imgUrl}`</div>}
+					{/* </div> */}
+				</div>
+			</ErrorBoundary>
+
+			{/* </> */}
 		</Modal>
 		// <>
 		// 	{show

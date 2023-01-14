@@ -13,13 +13,18 @@ import {
 	doc,
 } from 'firebase/firestore'
 import Image from 'next/image'
+import 'react-toastify/dist/ReactToastify.css'
 
 import img1 from '../../assests/IMG_0849.jpg'
 import useSWR from 'swr'
 import SlideImage from './SlideImage'
 import AddSlide from './AddSlide'
 import Loading from '../Loading'
+import { useRouter } from 'next/router'
 import { toast, ToastContainer } from 'react-toastify'
+import Router from 'next/router'
+import DefaultSlide from './DefaultSlide'
+import SlideWrapper from './SlideWrapper'
 // import Loading from './Loading'
 // import img2 from '../assests/IMG_0851.jpg'
 // import img3 from '../assests/IMG_0857.jpg'
@@ -34,67 +39,37 @@ import { toast, ToastContainer } from 'react-toastify'
 //confirm before deleting
 //use default to create in firestore collection
 
-const fetcher = () => {
-	const slidesCollection = collection(firestore, 'Slides')
-	const result = []
-
-	getDocs(slidesCollection).then((snapshot) => {
-		snapshot.docs.forEach((snapshot) => {
-			result.push({ ...snapshot.data(), id: snapshot.id })
-		})
-	})
-	console.log('corresponding result', result)
-	return result
-}
-
 const Slides = () => {
 	//useSWR(unique key,fnc to fetch data,)
-	const { data, error } = useSWR('slide', fetcher)
-	const [show, setShown] = useState(false)
+	// const router = useRouter()
 
-	if (error) {
-		toast.error(`An Error Occured: ${error}`)
-		return (
-			<>
-				<ToastContainer />
-				<div className={styles.loading__div}>
-					<Loading props={true} />
-				</div>
-			</>
-		)
-	}
+	// const [dataSlides, set] = useState([])
+	// useEffect(() => {
+	// 	// 	// 	// return () => {
+	// 	// 	// 	// }
+	// 	data && set(data)
+	// }, [isValidating])
+	// console.log('corresponding result', data)
+	// console.log(dataSlides, 'corresponding data', dataSlides.length)
+	// router.replace(router.asPath)
 
-	if (!data)
-		return (
-			<div className={styles.loading__div}>
-				<Loading props={true} />
-			</div>
-		)
-
-	console.log('I have loaded Data ', data)
-	var slideOb = {}
+	// {}
+	// var slideOb =
 	// {
 	// 	name: 'imaging',
 	// 	imgLink: img1,
 	// 	visible: true,
 	// 	slideId: 'fdkjvbjhdkks',
 	// }
-
+	// Router.reload()
+	// router.replace(router.asPath)
+	//this will reload the page without doing SSR
+	// router.refresh();
 	return (
 		<div className={styles.Module}>
 			<h3>Slides</h3>
 			<hr />
-			<div className={styles.slides__wrapper}>
-				<SlideImage slideObj={slideOb} />
-				{data.map((slideObj) => {
-					return <SlideImage slideObj={slideObj} key={slideObj.id} />
-				})}
-
-				<div className={styles.default} onClick={() => setShown(!show)}>
-					<BsPlusLg />
-				</div>
-				<AddSlide show={show} setShown={setShown} />
-			</div>
+			<SlideWrapper />
 		</div>
 	)
 }

@@ -10,6 +10,8 @@ import styles from '../../styles/Admin/Admin.module.scss'
 import Input from 'components/Input'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useDecypher } from '../../components/useDecypher'
+
 const Authenticate = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
@@ -36,6 +38,8 @@ const Authenticate = () => {
 				})
 				.catch(function (error) {
 					console.log('We have found an error')
+					// useDecypher(error)
+					toast.dismiss(Authenticator)
 					var errorCode = error.code
 					if (errorCode === 'auth/invalid-email') {
 						toast.dismiss(Authenticator)

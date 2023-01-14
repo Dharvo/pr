@@ -26,6 +26,7 @@ import AdminReviews from 'components/reviews/AdminReviews'
 import AdminAbout from 'components/reviews/About'
 import Options from 'components/Options'
 import { BsBrightnessLow, BsShieldLockFill } from 'react-icons/bs'
+import ErrorBoundary from 'components/ErrorBoundary'
 // const Reviews = collection(fireStore, 'Reviews')
 // console.log(Reviews)
 // import { removeUserCookie, setUserCookie, getUserFromCookie } from '../../firebase/auth/UserCookies'
@@ -117,7 +118,7 @@ const Panel = () => {
 			</p>
 			<h1>
 				Welcome Admin,
-				<span> {mainUser?.name.split(' ')[0]}</span>
+				<span> {mainUser?.name?.split(' ')[0]}</span>
 			</h1>
 			{/* <img src={user?.profilePic} alt={user?.name} width={200} height={200} /> */}
 
@@ -140,8 +141,10 @@ export default Panel
 Panel.getLayout = function PageLayout(page) {
 	return (
 		<>
+			{/* <ErrorBoundary> */}
 			{page}
 			<Footer />
+			{/* </ErrorBoundary> */}
 		</>
 	)
 }

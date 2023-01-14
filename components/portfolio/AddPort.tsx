@@ -5,11 +5,12 @@ import { BiRename } from 'react-icons/bi'
 import { CgClose, CgCloseO } from 'react-icons/cg'
 import styles from '../../styles/Admin/User.module.scss'
 type Props = {
+	portName: string
 	show: boolean
 	setShown: Function
 }
 
-const AddPort = ({ show, setShown }: Props) => {
+const AddPort = ({ portName, show, setShown }: Props) => {
 	const createPortImage = () => {}
 	const [name, setName] = useState<string>('')
 	const [focusName, setFocusName] = useState<boolean>(false)
@@ -19,6 +20,9 @@ const AddPort = ({ show, setShown }: Props) => {
 				<button className='close' onClick={() => setShown(!show)}>
 					<CgClose />
 				</button>
+				<h2>
+					You are Adding {name} to {portName}
+				</h2>
 				<form onSubmit={createPortImage}>
 					<Input
 						label='Image Name'

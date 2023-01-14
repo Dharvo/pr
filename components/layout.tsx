@@ -6,10 +6,6 @@ import Nav from './Nav'
 type Props = {
 	children: React.ReactNode
 }
-// let children:React.FC;
-// const Layout:React.FC ({children}:{React.Component})=> {
-// const Layout: React.FC<Props> = ({ children }) => {
-// const Layout: ReactElement = () => {
 function Layout(props: Props) {
 	const navs: string[] = ['home', 'about', 'portfolio', 'contact']
 	return (

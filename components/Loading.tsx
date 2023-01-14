@@ -1,15 +1,12 @@
 import React from 'react'
-import Image from 'next/image'
-import Ubuntu from '../public/Ubuntu.jpg'
 import styles from '../styles/Loading.module.scss'
 import { CircleLoader } from 'react-spinners'
 import UbuntuPage from './Ubuntu'
 
-type Props = { prop: boolean }
+type Props = { props: boolean }
 
-const Loading = ({ prop }: Props) => {
-	// const { icon }= props
-	if (prop)
+const Loading = ({ props }: Props) => {
+	if (props)
 		return (
 			<div className={styles.loader}>
 				<CircleLoader size={40} />

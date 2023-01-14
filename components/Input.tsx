@@ -1,6 +1,4 @@
 import React, { ReactNode } from 'react'
-// impo
-// import styles from '../../styles/Admin/Admin.module.scss'
 
 type InputProps = {
 	label: string
@@ -38,15 +36,9 @@ const Input = ({
 				onBlur={() => setFocus(false)}
 				onChange={(e) => setValue(e.target.value)}
 			/>
-			<span>
-				{icon}
-				{/* <BsPersonBoundingBox /> */}
-			</span>
+			<span>{icon}</span>
 		</div>
 	)
-	// 		const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => console.log(event)
-
-	// 		return <input type={`text`} value={props.value} onChange={handleInputChange} />
 }
 
 export default Input

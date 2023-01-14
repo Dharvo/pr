@@ -23,7 +23,9 @@
 		"**/*.tsx",
 		"pages/admin/Panel.jsx",
 		"pages/admin/Authenticate.jsx",
-		"components/slides/Slides.jsx"
+		"components/slides/Slides.jsx",
+		"components/slides/SlideWrapper.jsx",
+		"components/portfolio/PortfolioWrapper.jsx"
 	],
 	"exclude": ["node_modules"]
 }

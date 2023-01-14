@@ -15,7 +15,6 @@ const Reev = ({ name, comment, imgUrl }: Data) => {
 			<p>
 				<b>{name} </b> says <i> "{comment}"</i>
 			</p>
-
 			<button>Edit</button>
 		</div>
 	)
