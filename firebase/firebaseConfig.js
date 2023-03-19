@@ -52,6 +52,8 @@ const firestore = getFirestore(app);
 const storage = getStorage(app);
 //create collection ref
 const slidesCollection = collection(firestore, "Slides");
+const PortfoliosCollection = collection(firestore, "Portfolio");
+
 // const slidesCollection = collection(firestore, 'Slides')
 // const slides =
 // getDocs(slidesCollection).then((snapshot) => {
@@ -73,5 +75,13 @@ const slidesCollection = collection(firestore, "Slides");
 // }
 // console.log('storage', storage)
 
-export { firebase, app, firestore, auth, storage, slidesCollection };
+export {
+  firebase,
+  app,
+  firestore,
+  auth,
+  storage,
+  slidesCollection,
+  PortfoliosCollection,
+};
 // export { initFirebase, db, auth }
