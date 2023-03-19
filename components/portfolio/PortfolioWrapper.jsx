@@ -45,6 +45,8 @@ const PortfolioWrapper = () => {
     );
   }
 
+  console.log(data);
+
   return (
     <>
       <FolderTouch folders={!data ? [] : data} setFold={setFold} fold={fold} />
