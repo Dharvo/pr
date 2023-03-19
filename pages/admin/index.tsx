@@ -23,6 +23,7 @@ function Admin() {
 }
 
 export default Admin
+
 Admin.getLayout = function PageLayout(page: React.FC) {
 	return (
 		<>

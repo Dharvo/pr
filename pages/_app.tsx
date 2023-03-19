@@ -2,7 +2,7 @@ import Head from 'next/head'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import '../styles/global.scss'
-import type { ReactElement, ReactNode } from 'react'
+import { ReactElement, ReactNode, useState } from 'react'
 import Layout from '../components/layout'
 // import { useRouter } from 'next/router'
 // import Loading from '../components/Loading'
@@ -15,8 +15,12 @@ type AppPropsWithLayout = AppProps & {
 }
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
+	// const [defaultTheme, setDefaultTheme] = useState(true)
+	// const getLayout = Component.getLayout ?? ((page) => <Layout theme={defaultTheme}>{page}</Layout>)
 	const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>)
-
+	// const getPlainLayout =
+	// 	Component.getLayout ??
+	// 	((page) => <div className={`${defaultTheme ? 'Light' : 'Dark'}`}>{page}</div>)
 	// const router = useRouter()
 	// if (!router.isReady) return <Loading />
 	return (
@@ -37,7 +41,8 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 				<meta name='viewport' content='width=device-width, initial-scale=1.0' />
 			</Head>
 			{getLayout(<Component {...pageProps} />)}
-			<div id='portal'></div>
+			<div id='portal' />
+			{/* <div id='portal' className={`${defaultTheme ? 'Light' : 'Dark'}`} /> */}
 		</>
 	)
 }

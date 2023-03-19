@@ -1,0 +1,8 @@
+NEXT JS IMAGE 
+
+Safari 15+ displays a gray border while loading. Possible solutions:
+Use CSS @supports (font: -apple-system-body) and (-webkit-appearance: none) { img[loading="lazy"] { clip-path: inset(0.6px) } }
+Use priority if the image is above the fold
+Firefox 67+ displays a white background while loading. Possible solutions:
+Enable AVIF formats
+Use placeholder="blur"

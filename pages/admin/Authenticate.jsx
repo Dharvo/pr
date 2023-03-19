@@ -51,7 +51,7 @@ const Authenticate = () => {
 						toast.error('Oops, You are Offline')
 						toast.dismiss(Authenticator)
 					} else {
-						toast.error(errorMessage)
+						toast.error(error.errorMessage)
 						toast.dismiss(Authenticator)
 					}
 				})
