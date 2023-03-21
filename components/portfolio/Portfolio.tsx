@@ -1,18 +1,33 @@
-import ErrorBoundary from 'components/ErrorBoundary'
-import React from 'react'
-import styles from '../../styles/Admin/User.module.scss'
-import PortfolioWrapper from './PortfolioWrapper'
-
+import ErrorBoundary from "components/ErrorBoundary";
+import React, { useState } from "react";
+import styles from "../../styles/Admin/User.module.scss";
+import PortfolioWrapper from "./PortfolioWrapper";
+import { BsPlusLg } from "react-icons/bs";
+import AddFolder from "./AddFolder";
 const Portfolio: React.FC = () => {
-	return (
-		<section className={styles.Module}>
-			<h3>Portfolio</h3>
-			<hr />
-			<ErrorBoundary>
-				<PortfolioWrapper />
-			</ErrorBoundary>
-		</section>
-	)
-}
+  const [show, setShown] = useState<boolean>(false);
 
-export default Portfolio
+  return (
+    <section className={styles.Module}>
+      <div className={styles.flexMe}>
+        <h3>Portfolio</h3>
+        <button
+          className={styles.addFolder}
+          title="Add New Portfolio"
+          onClick={() => {
+            setShown(!show);
+          }}
+        >
+          <BsPlusLg />
+        </button>
+      </div>
+      <hr />
+      <ErrorBoundary>
+        <PortfolioWrapper />
+        <AddFolder show={show} setShown={setShown} />
+      </ErrorBoundary>
+    </section>
+  );
+};
+
+export default Portfolio;

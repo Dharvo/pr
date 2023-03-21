@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import Loading from "components/Loading";
 
 const fetcher = async () => {
-  console.log("Portfolios", PortfoliosCollection);
+  // console.log("Portfolios", PortfoliosCollection);
   const result = [];
   await getDocs(PortfoliosCollection)
     .then((snapshot) => {
@@ -20,19 +20,37 @@ const fetcher = async () => {
     .catch(function (err) {
       console.log("Found error:", err);
     });
-  return result;
+  return result.sort((a, b) => b.Favourite - a.Favourite);
+  // console.log();
+  //  result;
 };
 
 const PortfolioWrapper = () => {
-  const [fold, setFold] = useState("");
-  const { data, error } = useSWR("portfolio", fetcher);
+  const { data, error, isValidating } = useSWR("portfolio", fetcher);
+  const [activeFold, setActiveFold] = useState("");
 
-  // useEffect(() => {
-  // 	setTimeout(() => {
-  // 		!data ? toast.error(`Oops You're Offline...`) : setFold(!data ? '' : data[0]?.name)
-  // 	}, 2500)
-  // }, [])
+  // console.log(activeFold);
+  useEffect(() => {
+    // setTimeout(() => {
+    //   data?.length === 0 ? toast.error(`Oops You're Offline...`) : null;
+    // }, 2500);
+    setTimeout(() => {
+      //   // console.log("iN USEEFFECT", data[0]?.Title);
+
+      //   // console.log(!data); //true - No data
+      //   // console.log(data);
+      //   !data ? null : setActiveFold(data[1]?.Title);
+      //   // setActiveFold(data[1]?.Title);
+      // }, 10000);
+      // }, [data]);
+      data?.length === 0 ? toast.error(`Oops You're Offline...`) : null;
+      !data ? null : setActiveFold(data[0]?.Title);
+    }, 3000);
+    // }, [data, activeFold, isValidating]);
+  }, [isValidating]);
+  // console.log(activeFold);
   if (error) {
+    // if (error || !data) {
     toast.error(
       `An Error Occured from useSWR in portfolioWrapper: ${error?.message}`
     );
@@ -44,21 +62,39 @@ const PortfolioWrapper = () => {
       </>
     );
   }
+  /*
 
-  console.log(data);
-
+  // console.log(data);
+: 
+const datas = [
+  {
+    Favourite: false,
+      Images: [],
+      Title: "ssfdxggjh",
+      id: "3OxmboIDZQRskc4QUzAG",
+    },
+  ];
+  // console.log(data);
+  */
+  if (!data) {
+    return (
+      <>
+        <div className={styles.loading__div}>
+          <Loading props={true} />
+        </div>
+      </>
+    );
+  }
   return (
     <>
-      <FolderTouch folders={!data ? [] : data} setFold={setFold} fold={fold} />
+      <FolderTouch folders={data} setFold={setActiveFold} fold={activeFold} />
       <div className={styles.folder__photos}>
-        {/* {data?.length === 0
-					? null
-					: data?.map(
-							(folder) =>
-								folder.name === fold && (
-									<Port key={folder.name} data={folder.data} name={folder.name} />
-								)
-					  )} */}
+        {data?.map(
+          (folder) =>
+            folder?.Title === activeFold && (
+              <Port key={folder.id} name={folder.Title} data={folder.Images} />
+            )
+        )}
       </div>
     </>
   );

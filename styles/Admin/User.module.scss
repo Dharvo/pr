@@ -1,587 +1,666 @@
-@import '../colors';
+@import "../colors";
 $slideHeight: 45vh;
 
 .user {
-	padding-bottom: 4rem;
-	& h1 {
-		font-family: Cast;
-		margin: 1.5rem auto 1rem 7rem;
-		font-size: 3rem;
-		> span {
-			font-family: Cast;
-			font-size: 3.5rem;
-		}
-	}
-	:global([alt='Ubuntu']) {
-		left: auto !important;
-		width: 20vw;
-		transform: rotate(180deg);
-		right: 0;
-		overflow: hidden;
-		top: 0;
-		z-index: -1;
-	}
-	.Module {
-		padding: 0 2.2rem 2rem;
-		position: relative;
-		:global(h3) {
-			font-family: GillsMid;
-			font-size: 1.3rem;
-			color: $blaq4;
-			z-index: 100;
-			padding-bottom: 5px;
-		}
-		:global(p) {
-			font-family: Gills;
-		}
-		.slides__wrapper {
-			margin: 2rem 0 2rem 1rem;
-			display: flex;
-			flex-wrap: wrap;
-			.slides__image {
-				position: relative;
-				margin: 0 0.7rem 1.2rem 0;
-				border-radius: 5px;
-				overflow: hidden;
-				height: $slideHeight;
-				:global(img) {
-					height: $slideHeight;
-					width: auto;
-					object-fit: contain;
-					justify-self: center;
-					transition: all 250ms ease-in-out;
-				}
-				&:hover {
-					box-shadow: 0 0 10px 0.1px $black5;
-					:global(img) {
-						transform: scale(1.025);
-					}
-				}
-				.slides__action__update {
-					@include imageBtn;
-					right: 0;
-					top: 0;
-					color: $black1;
-					transition: all 250ms ease-out;
-					& svg {
-						width: 18px;
-						height: 18px;
-					}
-					&:hover {
-						color: $gold3;
-					}
-					&:focus,
-					&:focus-visible,
-					&:focus-within {
-						color: $gold;
-					}
-					&.visible {
-						color: $gold !important;
-						&:hover {
-							color: rgb(255, 115, 0) !important;
-						}
-						&:focus,
-						&:focus-visible,
-						&:focus-within {
-							color: red !important;
-						}
-					}
-				}
-				.slides__action__delete {
-					@include imageBtn;
-					left: 0;
-					bottom: 0;
-					color: $gold;
-					&:hover {
-						color: red;
-					}
-				}
-			}
-		}
-		.default {
-			height: $slideHeight;
-			border-radius: 5px;
-			background: linear-gradient(-7.5deg, $blaq2, $black5);
-			min-width: 17vw;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			margin-right: 15px;
-			transition: all 250ms ease-in-out;
-			:global(svg) {
-				color: $gray-d;
-				font-size: 22px;
-			}
-			&:hover {
-				background: linear-gradient(0deg, $blaq2, $black4);
-				border-radius: 7px;
-				transform: scale(1.05);
-				cursor: pointer;
-				:global(svg) {
-					font-size: 25px;
-				}
-			}
-		}
-		.portfolioNav {
-			@include flex;
-			> div {
-				width: 95%;
-				display: flex;
-				height: auto;
-				background: linear-gradient(60deg, $gray-b, $gray-c, $gray-e, $white, white);
-				z-index: -1;
-				.crossNav {
-					cursor: pointer;
-					padding: 0.7rem 0.8rem;
-					width: fit-content;
-					& span {
-						margin-right: 0.7rem;
-						font-family: Gills;
-					}
-					& button {
-						border: none;
-						border-radius: 50%;
-						padding: 5px 5px 3px;
-					}
-					&.whiten {
-						background-color: white;
-					}
-				}
-			}
-			.folderTouch {
-				clip-path: polygon(0 0, 80% 1%, 100% 100%, 0 100%);
-				border-radius: 3px 9px 0 0;
-				box-shadow: 15px -15px 15px 1px $gray-b;
-				background: white;
-				display: block;
-				& > .crossNav {
-					padding-right: 2.2rem;
-				}
-			}
-			& .white {
-				background-color: white;
-			}
-			.colorFold {
-				background-color: white;
-			}
-		}
+  padding-bottom: 4rem;
+  & h1 {
+    font-family: Cast;
+    margin: 1.5rem auto 1rem 7rem;
+    font-size: 3.5rem;
+    font-weight: 400;
+    > span {
+      font-family: Cast;
+      font-size: 3.5rem;
+    }
+  }
+  :global([alt="Ubuntu"]) {
+    left: auto !important;
+    width: 20vw;
+    transform: rotate(180deg);
+    right: 0;
+    overflow: hidden;
+    top: 0;
+    z-index: -1;
+  }
+  .Module {
+    padding: 0 2.2rem 2.5rem;
+    position: relative;
+    :global(h3) {
+      font-family: GillsMid;
+      font-size: 1.3rem;
+      color: $blaq4;
+      z-index: 100;
 
-		.addFolder {
-			background: $black3;
-			margin: auto 2rem;
-			border: none;
-			padding: 0.6rem 0.7rem 0.5rem;
-			border-radius: 4px;
-			box-shadow: 0 0 3px 0.5px $blaq2;
-			@include trans(200ms);
-			&:hover {
-				background: $blaq2;
-				box-shadow: 0 0 7px 0.6px $blaq;
-				svg {
-					transform: scale(1.07);
-					color: $gold2;
-				}
-			}
-			svg {
-				font-size: 1rem;
-				color: $white80;
-			}
-		}
-		.portfolio__wrapper {
-			margin: 2rem 0 2rem 1rem;
-			display: flex;
-			overflow: auto hidden;
-			// overflow: hidden;
-			&::-webkit-scrollbar-thumb {
-				background-color: $black4;
-				border-radius: 7px;
-				border: 1px solid $black5;
-			}
-			&::-webkit-scrollbar {
-				height: 10px;
-				width: max-content;
-				background-color: $gray-b;
-				margin-top: 10px;
-				border-radius: 7px;
-			}
-			.port__image {
-				position: relative;
-				& > img {
-					height: $slideHeight;
-					width: auto;
-					border-radius: 4px;
-					margin-right: 0.8rem;
-				}
-				& > button {
-					position: absolute;
-					bottom: 1.3rem;
-					left: 1.2rem;
-					padding: 4px;
-					border: none;
-					background: transparent;
-					color: $gold3;
-					@include trans($dig: 200ms);
-					svg {
-						font-size: 1rem;
-					}
-					&:hover {
-						transform: scale(1.1);
-						color: red;
-					}
-				}
-			}
-			// & > div {
-			// 	margin: 0 0.7rem 1.2rem 0;
-			// }
-			// }
-			.addPort {
-				height: 40vh;
-				border-radius: 5px;
-				background: linear-gradient(-7.5deg, $blaq2, $black5);
-				width: 25vw;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				margin-right: 15px;
-				// height: 100%;
-				transition: all 250ms ease-in-out;
-				:global(svg) {
-					color: $gray-d;
-					font-size: 22px;
-				}
-				&:hover {
-					background: linear-gradient(0deg, $blaq2, $black4);
-					border-radius: 15px;
-					transform: scale(1.05);
-					cursor: pointer;
-					:global(svg) {
-						font-size: 25px;
-					}
-				}
-			}
-		}
-		.contact__option {
-			@include flex;
-			padding: 0.3rem 4.5rem 1.5rem 1.7rem;
-			&:first-of-type {
-				padding-top: 2.8rem;
-			}
-			> div {
-				width: 70vw;
-				@include flex;
-			}
-			input {
-				padding: 6px 12px;
-				border-radius: 4px;
-				border: 1.5px solid $gray-a;
-				width: 50vw;
-				&::placeholder {
-					font-family: Gills;
-				}
-			}
-			.actions {
-				@include flex;
-				// align-items: center;
-				.icon {
-					margin-right: 1.7rem;
-					// margin: 1rem 2rem auto auto;
-					svg {
-						color: $black5;
-					}
-					&.opted svg {
-						color: $blaq;
-					}
-				}
-				/* SLIDER  */
-				.switch {
-					position: relative;
-					display: inline-block;
-					width: 40px;
-					height: 25px;
-				}
-				.switch input {
-					opacity: 0;
-					width: 0;
-					height: 0;
-				}
-				// .switchValue {
-				// 	padding-top: 0.5rem;
-				// 	position: absolute;
-				// 	right: 12%;
-				// 	z-index: -1;
-				// }
-				.slider,
-				.slider:before {
-					position: absolute;
-					cursor: pointer;
-					-webkit-transition: 0.4s;
-					transition: 0.4s;
-				}
-				.slider {
-					top: 0;
-					left: 0;
-					right: 0;
-					bottom: 0;
-					background-color: #ccc;
-				}
-				.slider:before {
-					content: '';
-					height: 20px;
-					width: 20px;
-					left: 3px;
-					bottom: 3px;
-					background-color: white;
-				}
-				input:checked + .slider {
-					background-color: $black2;
-					// background-color: #2196f3;
-				}
-				input:focus + .slider {
-					box-shadow: 0px 0px 2px $black2;
-				}
-				input:checked + .slider:before {
-					transform: translateX(13.5px);
-				}
-				/*Rounded sliders */
-				.slider.round {
-					border-radius: 34px;
-				}
-				.slider.round:before {
-					border-radius: 50%;
-				}
+      padding-bottom: 5px;
+    }
+    :global(p) {
+      font-family: Gills;
+    }
+    :global(hr) {
+      border: none;
+      background-color: #eee;
+      box-shadow: 0 2px 7px 0.1px #ddd;
+      height: 1px;
+      border-radius: 1px;
+    }
 
-				// .mailHead {
-				// 	text-transform: none;
-				// 	text-align: left;
-				// 	margin: 0px 0px 10px 7px;
-				// }
-				// #Inputsub {
-				// 	text-align: center;
-				// }
-				// .togeda {
-				// 	align-items: center;
-				// 	display: flex;
-				// 	justify-content: space-between;
-				// }
-				// .togeda > input {
-				// 	width: 70%;
-				// }
-				// [placeholder="Capture Signature"]::placeholder {
-				// 	padding: 15px;
-				// }
-				// .switches {
-				// 	margin-top: 1.7rem;
-				// }
-				// .geda {
-				// 	margin-right: 40px;
-			}
-		}
-		$revWidth: 200px;
-		.review {
-			padding: 1.2rem 2rem 2.5rem;
-			@include flex;
-			// gap: 2rem;
-			.reev {
-				width: 22vw;
-				.reev__Image {
-					margin: 0 auto 0.7rem;
-					width: $revWidth;
-					height: $revWidth;
-					object-fit: contain;
-					// &> img{
-					@include flex($jus: center);
-					background: $gray-d;
-					// }
-					clip-path: circle();
-				}
-				p {
-					text-align: center;
-					font-family: Gills;
-					font-size: 1.1rem;
-					color: $black2;
-					b {
-						font-size: 0.97rem;
-					}
-					i {
-						font-size: 0.95rem;
-					}
-				}
-				button {
-					padding: 0.6rem 2rem 0.7rem;
-					color: $white60;
-					background-color: $black4;
-					margin: 0.8rem auto 5px;
-					display: block;
-					width: max-content;
-					border: none;
-					border-radius: 70px;
-					font-size: 0.8rem;
-					@include trans;
-					&:hover {
-						color: $gold3;
-						font-size: 0.825rem;
-						background-color: $blaq;
-					}
-				}
-			}
-			.addDefault {
-				aside {
-					text-align: center;
-					font-family: Gills;
-					font-size: 1.2rem;
-					margin: 3rem auto 7rem;
-				}
-				.default__review {
-					background: linear-gradient(-7.5deg, $black1, $black5);
-					@include flex($jus: center);
-					// @include trans;
-					clip-path: circle();
-					width: $revWidth;
-					height: $revWidth;
-					svg {
-						@include trans($dig: 300ms);
-						font-size: 1.3rem;
-						color: $white60;
-					}
-					&:hover {
-						svg {
-							font-size: 1.8rem;
-							color: $white90;
-						}
-					}
-				}
-			}
-		}
-		.AdminAbout {
-			header {
-				@include flex;
-				span svg {
-					padding-right: 1.2rem;
-					padding-bottom: 0.7rem;
-					color: $black5;
-					font-size: 1.4rem;
-				}
-			}
-			p {
-				color: $black3;
-				padding: 0.8rem 0.7rem 1.5rem;
-				line-height: 1.9;
-				font-size: 1.1rem;
-				letter-spacing: 0.5px;
-				word-spacing: 2.5px;
-				&::first-letter {
-					padding-left: 2rem;
-				}
-			}
-		}
-	}
-	.loading__div {
-		width: 100%;
-		height: 50vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		overflow-y: hidden;
-	}
-	.image__loader {
-		width: 15%;
-		height: $slideHeight;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+    .slides__wrapper {
+      margin: 2rem 0 2rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      .slides__image {
+        position: relative;
+        margin: 0 0.7rem 1.2rem 0;
+        border-radius: 7px;
+        overflow: hidden;
+        height: $slideHeight;
+        :global(img) {
+          height: $slideHeight;
+          width: auto;
+          object-fit: contain;
+          justify-self: center;
+          transition: all 250ms ease-in-out;
+        }
+        &:hover {
+          box-shadow: 0 0 12px 0.5px $gray-d;
+          :global(img) {
+            transform: scale(1.025);
+          }
+        }
+        .slides__action__update {
+          @include imageBtn;
+          //   color: #999;
+          //   box-shadow: 1px 2px 5px 0 #1113;
+          right: 0;
+          top: 0;
+          transition: all 250ms ease-out;
+          & svg {
+            width: 18px;
+            height: 18px;
+          }
+          &:hover {
+            color: $black5;
+          }
+          &:focus,
+          &:focus-visible,
+          &:focus-within {
+            color: $gold;
+          }
+          &.visible {
+            color: $gold !important;
+            &:hover {
+              color: rgb(255, 115, 0) !important;
+            }
+            &:focus,
+            &:focus-visible,
+            &:focus-within {
+              color: red !important;
+            }
+          }
+        }
+        .slides__action__delete {
+          @include imageBtn;
+          transition: all 250ms ease-out;
+          left: 0;
+          bottom: 0;
+          color: $gold;
+          &:hover {
+            color: red;
+          }
+        }
+      }
+    }
+    .default {
+      height: $slideHeight;
+      border-radius: 5px;
+      background: linear-gradient(-7.5deg, $blaq2, $black5);
+      min-width: 17vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      transition: all 250ms ease-in-out;
+      :global(svg) {
+        color: $gray-d;
+        font-size: 22px;
+      }
+      &:hover {
+        background: linear-gradient(0deg, $blaq2, $black4);
+        border-radius: 7px;
+        transform: scale(1.05);
+        cursor: pointer;
+        :global(svg) {
+          font-size: 25px;
+        }
+      }
+    }
+    .flexMe {
+      @include flex;
+      padding-bottom: 0.7rem;
+    }
+    .portfolioNav {
+      > div {
+        width: 95%;
+        display: flex;
+        // height: auto;
+        background: linear-gradient(
+          60deg,
+          $black3,
+          $gray-a,
+          $gray-b,
+          $gray-c,
+          $gray-c,
+          $gray-e,
+          $white,
+          $white,
+          white
+        );
+        // z-index: -1;
+        // cursor: pointer;
+        .crossNav {
+          padding: 0.8rem 0.9rem 0.7rem;
+          width: fit-content;
+          &:hover {
+            cursor: pointer;
+          }
+          & span {
+            margin-right: 0.7rem;
+            font-family: Gills;
+          }
+          & button {
+            border: none;
+            border-radius: 50%;
+            padding: 6px 6px 3.5px;
+            box-shadow: 0 0 4px #ddd;
+            margin-right: 5px;
+            @include trans(250ms);
+            & > svg {
+              @include trans(250ms);
+            }
+            &:hover {
+              cursor: pointer;
+              color: red;
+              & > svg {
+                transform: scale(1.15);
+              }
+            }
+            &.FavouriteBtn {
+              color: $gold3;
+              &:hover {
+                background-color: $black5;
+                color: $gold2;
+              }
+            }
+            &.Fav {
+              background-color: $blaq2;
+              color: $gold;
+              &:hover {
+                background-color: $black4;
+                color: $gold2;
+              }
+            }
+          }
+          &.whiten {
+            background-color: white;
+          }
+        }
+      }
+      .folderTouch {
+        clip-path: polygon(0 0, 80% 1%, 100% 100%, 0 100%);
+        border-radius: 3px 9px 0 0;
+        box-shadow: 15px -15px 15px 1px $gray-b;
+        background: white;
+        display: block;
+
+        & > .crossNav {
+          //   z-index: 10;
+          padding-right: 2rem;
+          //   cursor: pointer;
+        }
+      }
+      & .white {
+        background-color: white;
+      }
+      .colorFold {
+        background-color: white;
+      }
+    }
+
+    .addFolder {
+      background: $black4;
+      margin: auto 2rem;
+      border: none;
+      padding: 0.4rem 0.52rem 0.3rem;
+      border-radius: 4px;
+      box-shadow: 0 0 3px 0.5px $black5;
+      @include trans(200ms);
+      &:hover {
+        background: $blaq2;
+        box-shadow: 0 0 7px 0.6px $blaq;
+        svg {
+          transform: scale(1.07);
+          color: $gold2;
+        }
+      }
+      svg {
+        font-size: 1rem;
+        color: $white80;
+      }
+    }
+    .portfolio__wrapper {
+      margin: 2rem 0 2rem 1rem;
+      display: flex;
+      overflow: auto hidden;
+      // overflow: hidden;
+      &::-webkit-scrollbar-thumb {
+        background-color: $black4;
+        border-radius: 7px;
+        border: 1px solid $black5;
+      }
+      &::-webkit-scrollbar {
+        height: 10px;
+        width: max-content;
+        background-color: $gray-b;
+        margin-top: 10px;
+        border-radius: 7px;
+      }
+      .port__image {
+        position: relative;
+        & > img {
+          height: $slideHeight;
+          width: auto;
+          border-radius: 4px;
+          margin-right: 0.8rem;
+        }
+        & > button {
+          position: absolute;
+          bottom: 1.3rem;
+          left: 1.2rem;
+          // padding: 4px;
+          border: none;
+          // background: transparent;
+          color: $gold3;
+          @include trans($dig: 200ms);
+
+          padding: 7px 7px 5px;
+          // position: absolute;
+          // margin: 0.7rem;
+          border-radius: 50%;
+          background: rgba(17, 17, 17, 0.1);
+          z-index: 2;
+          // color: #999;
+          box-shadow: 1px 2px 5px 0 rgba(17, 17, 17, 0.2);
+          // transition: all 250ms ease-out;
+          // left: 0;
+          // bottom: 0;
+          // color: #ffd609;
+
+          svg {
+            font-size: 1rem;
+          }
+          &:hover {
+            color: red;
+
+            & > svg {
+              transform: scale(1.1);
+            }
+          }
+        }
+      }
+      // & > div {
+      // 	margin: 0 0.7rem 1.2rem 0;
+      // }
+      // }
+      .addPort {
+        height: 40vh;
+        border-radius: 5px;
+        background: linear-gradient(-7.5deg, $blaq2, $black5);
+        width: 25vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        // height: 100%;
+        transition: all 250ms ease-in-out;
+        :global(svg) {
+          color: $gray-d;
+          font-size: 22px;
+        }
+        &:hover {
+          background: linear-gradient(0deg, $blaq2, $black4);
+          border-radius: 15px;
+          transform: scale(1.05);
+          cursor: pointer;
+          :global(svg) {
+            font-size: 25px;
+          }
+        }
+      }
+    }
+    .contact__option {
+      @include flex;
+      padding: 0.3rem 4.5rem 1.5rem 1.7rem;
+      &:first-of-type {
+        padding-top: 2.8rem;
+      }
+      > div {
+        width: 70vw;
+        @include flex;
+      }
+      input {
+        padding: 6px 12px;
+        border-radius: 4px;
+        border: 1.5px solid $gray-a;
+        width: 50vw;
+        &::placeholder {
+          font-family: Gills;
+        }
+      }
+      .actions {
+        @include flex;
+        // align-items: center;
+        .icon {
+          margin-right: 1.7rem;
+          // margin: 1rem 2rem auto auto;
+          svg {
+            color: $black5;
+          }
+          &.opted svg {
+            color: $blaq;
+          }
+        }
+        /* SLIDER  */
+        .switch {
+          position: relative;
+          display: inline-block;
+          width: 40px;
+          height: 25px;
+        }
+        .switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+        // .switchValue {
+        // 	padding-top: 0.5rem;
+        // 	position: absolute;
+        // 	right: 12%;
+        // 	z-index: -1;
+        // }
+        .slider,
+        .slider:before {
+          position: absolute;
+          cursor: pointer;
+          -webkit-transition: 0.4s;
+          transition: 0.4s;
+        }
+        .slider {
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+        }
+        .slider:before {
+          content: "";
+          height: 20px;
+          width: 20px;
+          left: 3px;
+          bottom: 3px;
+          background-color: white;
+        }
+        input:checked + .slider {
+          background-color: $black2;
+          // background-color: #2196f3;
+        }
+        input:focus + .slider {
+          box-shadow: 0px 0px 2px $black2;
+        }
+        input:checked + .slider:before {
+          transform: translateX(13.5px);
+        }
+        /*Rounded sliders */
+        .slider.round {
+          border-radius: 34px;
+        }
+        .slider.round:before {
+          border-radius: 50%;
+        }
+
+        // .mailHead {
+        // 	text-transform: none;
+        // 	text-align: left;
+        // 	margin: 0px 0px 10px 7px;
+        // }
+        // #Inputsub {
+        // 	text-align: center;
+        // }
+        // .togeda {
+        // 	align-items: center;
+        // 	display: flex;
+        // 	justify-content: space-between;
+        // }
+        // .togeda > input {
+        // 	width: 70%;
+        // }
+        // [placeholder="Capture Signature"]::placeholder {
+        // 	padding: 15px;
+        // }
+        // .switches {
+        // 	margin-top: 1.7rem;
+        // }
+        // .geda {
+        // 	margin-right: 40px;
+      }
+    }
+    $revWidth: 200px;
+    .review {
+      padding: 1.2rem 2rem 2.5rem;
+      @include flex;
+      // gap: 2rem;
+      .reev {
+        width: 22vw;
+        .reev__Image {
+          margin: 0 auto 0.7rem;
+          width: $revWidth;
+          height: $revWidth;
+          object-fit: contain;
+          // &> img{
+          @include flex($jus: center);
+          background: $gray-d;
+          // }
+          clip-path: circle();
+        }
+        p {
+          text-align: center;
+          font-family: Gills;
+          font-size: 1.1rem;
+          color: $black2;
+          b {
+            font-size: 0.97rem;
+          }
+          i {
+            font-size: 0.95rem;
+          }
+        }
+        button {
+          padding: 0.6rem 2rem 0.7rem;
+          color: $white60;
+          background-color: $black4;
+          margin: 0.8rem auto 5px;
+          display: block;
+          width: max-content;
+          border: none;
+          border-radius: 70px;
+          font-size: 0.8rem;
+          @include trans;
+          &:hover {
+            color: $gold3;
+            font-size: 0.825rem;
+            background-color: $blaq;
+          }
+        }
+      }
+      .addDefault {
+        aside {
+          text-align: center;
+          font-family: Gills;
+          font-size: 1.2rem;
+          margin: 3rem auto 7rem;
+        }
+        .default__review {
+          background: linear-gradient(-7.5deg, $black1, $black5);
+          @include flex($jus: center);
+          // @include trans;
+          clip-path: circle();
+          width: $revWidth;
+          height: $revWidth;
+          svg {
+            @include trans($dig: 300ms);
+            font-size: 1.3rem;
+            color: $white60;
+          }
+          &:hover {
+            svg {
+              font-size: 1.8rem;
+              color: $white90;
+            }
+          }
+        }
+      }
+    }
+    .AdminAbout {
+      header {
+        @include flex;
+        span svg {
+          padding-right: 1.2rem;
+          padding-bottom: 0.7rem;
+          color: $black5;
+          font-size: 1.4rem;
+        }
+      }
+      p {
+        color: $black3;
+        padding: 0.8rem 0.7rem 1.5rem;
+        line-height: 1.9;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        word-spacing: 2.5px;
+        &::first-letter {
+          padding-left: 2rem;
+        }
+      }
+    }
+  }
+  .loading__div {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: hidden;
+  }
+  .image__loader {
+    width: 15%;
+    height: $slideHeight;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 .add__slide__form,
 .add__portfolio__image {
-	width: 60%;
-	padding: 1rem 5rem 10rem;
-	background: white;
-	/* margin: 0 auto; */
-	// display: flex;
-	/* align-items: center; */
-	// align-self: center;
-	// height: 50vh;
-	border-radius: 30px;
-	// .close {
-	button {
-		margin: 0.1rem 1rem 1rem 100%;
-		padding: 5px;
-		border-radius: 50%;
-		border: none;
-		&:hover {
-			color: red;
-		}
-		// }
-	}
-	[id$='-ID'] {
-		border: none;
-		padding: 0 0 2rem;
-		width: 100%;
-		cursor: pointer !important;
-		padding: 1rem;
-		box-shadow: 0 0.5px 7px 0.5px $gray-e;
-		margin-right: 2rem;
-	}
-	[type='submit'] {
-		padding: 0.8rem 4.5rem !important;
-		background: linear-gradient($black4, $black22);
-		border: none !important;
-		border-radius: 7px;
-		height: auto !important;
-		color: $white70;
-		font-size: 15px;
-		font-family: 'Gills';
-		margin: 1.8rem auto;
-		// width: fit-content !important;
-		// justify-self: center;
-		display: flex;
-		transition: all 170ms ease-in-out;
-		align-items: center;
-		&:hover {
-			cursor: pointer;
-			background: linear-gradient($black2, $blaq);
-			color: $gold3;
-		}
-	}
-	h2 {
-		font-family: Gills;
-		font-size: 2rem;
-		text-align: center;
-		padding-bottom: 1.8rem;
-	}
-	span {
-		margin: 0 auto 1.5rem 8rem;
-		display: inline-block;
-	}
+  width: 60%;
+  padding: 1rem 5rem 10rem;
+  background: white;
+  /* margin: 0 auto; */
+  // display: flex;
+  /* align-items: center; */
+  // align-self: center;
+  // height: 50vh;
+  border-radius: 30px;
+  // .close {
+  button {
+    margin: 0.1rem 1rem 1rem 100%;
+    padding: 5px;
+    border-radius: 50%;
+    border: none;
+    &:hover {
+      color: red;
+      cursor: pointer;
+    }
+    // }
+  }
+  [id$="-ID"] {
+    border: none;
+    padding: 0 0 2rem;
+    width: 100%;
+    cursor: pointer !important;
+    padding: 1rem;
+    box-shadow: 0 0.5px 7px 0.5px $gray-e;
+    margin-right: 2rem;
+  }
+  [type="submit"] {
+    padding: 0.8rem 4.5rem !important;
+    background: linear-gradient($black4, $black22);
+    border: none !important;
+    border-radius: 7px;
+    height: auto !important;
+    color: $white70;
+    font-size: 15px;
+    font-family: "Gills";
+    margin: 1.8rem auto;
+    // width: fit-content !important;
+    // justify-self: center;
+    display: flex;
+    transition: all 170ms ease-in-out;
+    align-items: center;
+    &:hover {
+      //   cursor: pointer;
+      background: linear-gradient($black2, $blaq);
+      color: $gold3;
+    }
+  }
+
+  h2 {
+    font-family: Gills;
+    font-size: 2rem;
+    text-align: center;
+    padding-bottom: 1.8rem;
+  }
+  span {
+    margin: 0 auto 1.5rem 8rem;
+    display: inline-block;
+  }
 }
 
 .Option {
-	margin: 0 2.5rem;
-	// margin: 1rem 2.5rem 0;
-	padding: 1.5rem 2rem 1.2rem 0.9rem;
-	border-bottom: 1.2px solid $gray-d;
-	@include trans;
-	@include flex;
-	&:hover {
-		background-color: $gray-e;
-		cursor: pointer;
+  margin: 0 2.5rem;
+  // margin: 1rem 2.5rem 0;
+  padding: 1.5rem 2rem 1.2rem 0.9rem;
+  border-bottom: 1.2px solid $gray-d;
+  @include trans;
+  @include flex;
+  &:hover {
+    background-color: $gray-e;
+    cursor: pointer;
 
-		span,
-		p {
-			// color: $gray;
-			color: $blaq;
-		}
-	}
+    span,
+    p {
+      // color: $gray;
+      color: $blaq;
+    }
+  }
 
-	// color: $blaq;
-	// }
-	span,
-	p {
-		font-family: Gills;
-		color: $gray;
-	}
-	&:last-of-type span svg {
-		font-size: 1.35rem;
-		margin-right: -3px;
-	}
+  // color: $blaq;
+  // }
+  span,
+  p {
+    font-family: Gills;
+    color: $gray;
+  }
+  &:last-of-type span svg {
+    font-size: 1.35rem;
+    margin-right: -3px;
+  }
 }

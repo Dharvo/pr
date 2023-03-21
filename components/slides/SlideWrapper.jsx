@@ -52,8 +52,15 @@ const SlideWrapper = () => {
       </>
     );
   }
-
-  console.log(data);
+  if (!data) {
+    return (
+      <>
+        <div className={styles.loading__div}>
+          <Loading props={true} />
+        </div>
+      </>
+    );
+  }
   return (
     <div className={styles.slides__wrapper}>
       <ToastContainer />

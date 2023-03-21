@@ -47,6 +47,7 @@ const AddSlide = ({ show, setShown }: modal["props"]) => {
   const [focusName, setFocusName] = useState<boolean>(false);
   const [imgUrl, setImgUrl] = useState<string>("");
   const [progresspercent, setProgresspercent] = useState<number>(0);
+  const [uploading, setUploading] = useState<boolean>(false);
 
   //Import Storage
   // import { storage } from './firebase';
@@ -55,7 +56,7 @@ const AddSlide = ({ show, setShown }: modal["props"]) => {
   const createSlide = async (e: any) => {
     // const handleSubmit = (e) => {
     e.preventDefault();
-
+    setUploading(true);
     const file = e.target[1]?.files[0];
     if (!name) {
       toast.error("Please Add an Image Name");
@@ -93,6 +94,7 @@ const AddSlide = ({ show, setShown }: modal["props"]) => {
                   setImgUrl("");
                   setShown(!show);
                   setProgresspercent(0);
+                  setUploading(false);
                   window.location.reload();
                 }, 10000)
               );
@@ -185,6 +187,7 @@ const AddSlide = ({ show, setShown }: modal["props"]) => {
   const closeModal = () => {
     setShown(!show);
     setName("");
+    setUploading(false);
     setProgresspercent(0);
   };
 
@@ -208,7 +211,14 @@ const AddSlide = ({ show, setShown }: modal["props"]) => {
               pass={false}
             />
             <input type="file" name={name} id={`${name}-ID`} />
-            <input type="submit" value="Submit" />
+            <input
+              type="submit"
+              value="Submit"
+              style={{
+                cursor: uploading ? "not-allowed" : "pointer",
+              }}
+              disabled={uploading}
+            />
           </form>
 
           {/* {imgUrl && <div>{imgUrl}</div>} */}
@@ -217,13 +227,15 @@ const AddSlide = ({ show, setShown }: modal["props"]) => {
           <div
             style={{
               width: `${progresspercent}%`,
-              height: "4px",
+              height: "3px",
               border: "0.5px solid #777",
               backgroundColor: "#333",
               borderRadius: "3px",
             }}
           />
-          {imgUrl && <div>Image upload successfull, Find at `{imgUrl}`</div>}
+          {imgUrl && (
+            <div style={{ paddingTop: "10px" }}>Upload successful !</div>
+          )}
           {/* </div> */}
         </div>
       </ErrorBoundary>
