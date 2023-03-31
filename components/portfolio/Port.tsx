@@ -15,31 +15,36 @@ import Loading from "components/Loading";
 import Modal from "components/Modal";
 import AddPort from "./AddPort";
 import DelPort from "./DelPort";
+import { ToastContainer } from "react-toastify";
 type PortProps = {
-  key: string;
+  id: string;
   name: string;
   data: string[];
   // data: {}
 };
 
-const Port = ({ key, name, data }: PortProps) => {
-  const [show, setShown] = useState(false);
-  const [del, setDel] = useState(false);
+const Port = ({ id, name, data }: PortProps) => {
+  const [show, setShown] = useState<boolean>(false);
+  const [del, setDel] = useState<boolean>(false);
+  const [imgToDelete, setImgToDelete] = useState<string>("");
+
   // onClick={() => deleteSlide(slideId)}
   // console.log('slideObj', imgLink)
   return (
-    <div key={key} className={styles.portfolio__wrapper}>
+    <div key={id} className={styles.portfolio__wrapper}>
+      <ToastContainer />
+
       {/* <CrossNav name={name} /> */}
-      {data?.map((portImg) => {
+      {data?.map((portImg, i) => {
         if (portImg === undefined || portImg === "") {
           return (
-            <div key={key} className={styles.image__loader}>
+            <div key={id} className={styles.image__loader}>
               <Loading props={true} />
             </div>
           );
         } else {
           return (
-            <div key={key} className={styles.port__image}>
+            <div key={i} className={styles.port__image}>
               <Image
                 className={styles.slides__image}
                 src={portImg}
@@ -49,7 +54,10 @@ const Port = ({ key, name, data }: PortProps) => {
                 height={700}
               />
               <button
-                onClick={() => setDel(!del)}
+                onClick={() => {
+                  setImgToDelete(portImg);
+                  setDel(!del);
+                }}
                 className={styles.slides__action__delete}
               >
                 <RiDeleteBinLine />
@@ -66,8 +74,20 @@ const Port = ({ key, name, data }: PortProps) => {
       <div className={styles.default} onClick={() => setShown(!show)}>
         <BsPlusLg />
       </div>
-      <AddPort portName={name} show={show} setShown={setShown} />
-      <DelPort name={name} show={del} setShown={setDel} />
+      <AddPort
+        key={id}
+        id={id}
+        portName={name}
+        show={show}
+        setShown={setShown}
+      />
+      <DelPort
+        docId={id}
+        img={imgToDelete}
+        name={name}
+        show={del}
+        setShown={setDel}
+      />
       {/* </Modal> */}
     </div>
   );

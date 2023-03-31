@@ -7,7 +7,7 @@ import { CgClose } from "react-icons/cg";
 import {
   firebase,
   firestore,
-  slidesCollection,
+  SlidesCollection,
   storage,
 } from "../../firebase/firebaseConfig";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
@@ -102,6 +102,7 @@ const AddSlide = ({ show, setShown }: modal["props"]) => {
           // .catch((err) => toast.error(`Ooops You're Offline...`)));
         )
       : toast.error(`Image Upload unsuccessful, You're Offline...`);
+
     //Reset Input Fields
     //Close Modal
     //Reset progresspercent n img link to ''
@@ -127,11 +128,14 @@ const AddSlide = ({ show, setShown }: modal["props"]) => {
     // try {
     //   if (navigator.onLine) {
     //   await
-    await addDoc(slidesCollection, payload)
+    await addDoc(SlidesCollection, payload)
       .catch((err) => {
         console.log(`Error Found: `, err);
       })
-      .finally(() => toast.success("Image Upload Successful"));
+      .finally(() => {
+        toast.success("Image Upload Successful");
+        toast.loading("Please wait...");
+      });
     // };
   };
   // !
@@ -208,7 +212,6 @@ const AddSlide = ({ show, setShown }: modal["props"]) => {
               focus={focusName}
               setFocus={setFocusName}
               icon={<BiRename />}
-              pass={false}
             />
             <input type="file" name={name} id={`${name}-ID`} />
             <input

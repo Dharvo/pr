@@ -26,7 +26,8 @@
     "components/slides/Slides.jsx",
     "components/slides/SlideWrapper.jsx",
     "components/portfolio/PortfolioWrapper.jsx",
-    "components/about/About.jsx"
+    "components/about/About.tsx",
+    "components/contact/ContactOption.tsx"
   ],
   "exclude": ["node_modules"]
 }

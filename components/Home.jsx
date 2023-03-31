@@ -1,15 +1,17 @@
-import { SlidesCollection } from "../../firebase/firebaseConfig";
 import React, { useState, useEffect } from "react";
-import styles from "../../styles/Admin/User.module.scss";
+import { SlidesCollection } from "../firebase/firebaseConfig";
+import styles from "../styles/Home/index.module.scss";
 import { getDocs } from "firebase/firestore";
-import "react-toastify/dist/ReactToastify.css";
 import useSWR from "swr";
-import SlideImage from "./SlideImage";
-import AddSlide from "./AddSlide";
-import Loading from "../Loading";
+// import SlideImage from "./SlideImage";
+// import AddSlide from "./AddSlide";
+// import Loading from "../Loading";
 import { toast } from "react-toastify";
-import DefaultSlide from "./DefaultSlide";
+// import DefaultSlide from "./DefaultSlide";
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import Loading from "./Loading";
+import Image from "next/image";
 
 const fetcher = async () => {
   //   const slidesCollection = collection(firestore, "Slides");
@@ -33,14 +35,14 @@ const fetcher = async () => {
   // }
 };
 
-const SlideWrapper = () => {
+const Home = () => {
   const { data, error, isValidating } = useSWR("slides", fetcher);
-  const [show, setShown] = useState(false);
+  // const [show, setShown] = useState(false);
   useEffect(() => {
-    setTimeout(() => {
-      data?.length === 0 ? toast.error(`Oops You're Offline...`) : null;
-    }, 2500);
-  }, []);
+    //   setTimeout(() => {
+    //     data?.length === 0 ? toast.error(`Oops You're Offline...`) : null;
+    //   }, 2500);
+  }, [isValidating]);
 
   if (error) {
     toast.error(`Error : ${error?.message}`);
@@ -62,15 +64,25 @@ const SlideWrapper = () => {
     );
   }
   return (
-    <div className={styles.slides__wrapper}>
+    <div id={styles.home}>
       <ToastContainer />
-      {data?.map((slideObj) => {
-        return <SlideImage slideObj={slideObj} key={slideObj.id} />;
-      })}
-      <DefaultSlide show={show} setShown={setShown} />
-      <AddSlide show={show} setShown={setShown} />
+      <div className={styles.home__slides}>
+        {data?.map((slideObj) => {
+          console.log(slideObj.visible);
+          if (slideObj.visible)
+            return (
+              <Image
+                src={slideObj.imgLink}
+                alt={`${slideObj.name}-IMAGE`}
+                width={700}
+                height={700}
+              />
+            );
+          return null;
+        })}
+      </div>
     </div>
   );
 };
 
-export default SlideWrapper;
+export default Home;

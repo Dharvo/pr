@@ -1,6 +1,0 @@
-@mixin flex($dir: row) {
-	align-items: center;
-	flex-direction: $dir;
-	display: flex;
-	justify-content: center;
-}

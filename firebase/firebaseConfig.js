@@ -51,8 +51,11 @@ const firestore = getFirestore(app);
 // const firestore = getFirestore(app)
 const storage = getStorage(app);
 //create collection ref
-const slidesCollection = collection(firestore, "Slides");
+const SlidesCollection = collection(firestore, "Slides");
 const PortfoliosCollection = collection(firestore, "Portfolio");
+const ContactCollection = collection(firestore, "Contacts");
+const AboutCollection = collection(firestore, "About");
+const ReviewCollection = collection(firestore, "Reviews");
 
 // const slidesCollection = collection(firestore, 'Slides')
 // const slides =
@@ -81,7 +84,10 @@ export {
   firestore,
   auth,
   storage,
-  slidesCollection,
+  SlidesCollection,
   PortfoliosCollection,
+  AboutCollection,
+  ContactCollection,
+  ReviewCollection,
 };
 // export { initFirebase, db, auth }

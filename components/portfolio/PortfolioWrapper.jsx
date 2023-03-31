@@ -5,7 +5,7 @@ import Port from "./Port";
 import useSWR from "swr";
 import { getDocs } from "firebase/firestore";
 import { PortfoliosCollection } from "../../firebase/firebaseConfig";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import Loading from "components/Loading";
 
 const fetcher = async () => {
@@ -87,12 +87,26 @@ const datas = [
   }
   return (
     <>
-      <FolderTouch folders={data} setFold={setActiveFold} fold={activeFold} />
+      <ToastContainer />
+      <FolderTouch
+        folders={data}
+        setFold={setActiveFold}
+        fold={activeFold}
+        // favNo={2}
+        favNo={
+          data.filter((folderObject) => folderObject.Favourite === true).length
+        }
+      />
       <div className={styles.folder__photos}>
         {data?.map(
           (folder) =>
             folder?.Title === activeFold && (
-              <Port key={folder.id} name={folder.Title} data={folder.Images} />
+              <Port
+                key={folder.id}
+                id={folder.id}
+                name={folder.Title}
+                data={folder.Images}
+              />
             )
         )}
       </div>

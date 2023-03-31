@@ -16,8 +16,13 @@ type FolderArr = {
   Images: string[];
 }[];
 
-type Fold = { folders: FolderArr; fold: string; setFold: Function };
-const FolderTouch = ({ folders, fold, setFold }: Fold) => {
+type Fold = {
+  folders: FolderArr;
+  fold: string;
+  setFold: Function;
+  favNo: number;
+};
+const FolderTouch = ({ folders, fold, setFold, favNo }: Fold) => {
   // const [show, setShown] = useState<boolean>(false);
   //DELIVERABLES INITIALLY ONLY INDEX 0 BE FOLD
   //ON CLICK UPDATE STATE, OF ANY ADD UP WIDTH FOLD, & RELOAD PICTURES
@@ -38,11 +43,13 @@ const FolderTouch = ({ folders, fold, setFold }: Fold) => {
             // IF ITS THE FIRST NAV RETURN WITH DEFAULT CLASS
             return (
               <div
-                key={folderObject.Title}
+                key={folderObject.id}
                 className={`${styles.folderTouch} white`}
               >
                 <CrossNav
+                  id={folderObject.id}
                   name={folderObject.Title}
+                  favNo={favNo}
                   fav={folderObject.Favourite}
                   setFold={setFold}
                 />
@@ -52,8 +59,10 @@ const FolderTouch = ({ folders, fold, setFold }: Fold) => {
           if (folders.indexOf(folderObject) <= Index) {
             // IF ITS INDEX IS LESS THAN THE ACTIVE INDEX
             return (
-              <div key={folderObject.Title} className={styles.white}>
+              <div key={folderObject.id} className={styles.white}>
                 <CrossNav
+                  id={folderObject.id}
+                  favNo={favNo}
                   name={folderObject.Title}
                   fav={folderObject.Favourite}
                   setFold={setFold}
@@ -63,7 +72,9 @@ const FolderTouch = ({ folders, fold, setFold }: Fold) => {
           }
           return (
             <CrossNav
-              key={folderObject.Title}
+              id={folderObject.id}
+              key={folderObject.id}
+              favNo={favNo}
               name={folderObject.Title}
               fav={folderObject.Favourite}
               setFold={setFold}

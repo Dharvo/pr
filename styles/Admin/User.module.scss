@@ -43,7 +43,6 @@ $slideHeight: 45vh;
       height: 1px;
       border-radius: 1px;
     }
-
     .slides__wrapper {
       margin: 2rem 0 2rem 1rem;
       display: flex;
@@ -175,7 +174,7 @@ $slideHeight: 45vh;
             margin-right: 5px;
             @include trans(250ms);
             & > svg {
-              @include trans(250ms);
+              // @include trans(250ms);
             }
             &:hover {
               cursor: pointer;
@@ -185,7 +184,7 @@ $slideHeight: 45vh;
               }
             }
             &.FavouriteBtn {
-              color: $gold3;
+              // color: $gold3;
               &:hover {
                 background-color: $black5;
                 color: $gold2;
@@ -225,7 +224,6 @@ $slideHeight: 45vh;
         background-color: white;
       }
     }
-
     .addFolder {
       background: $black4;
       margin: auto 2rem;
@@ -248,7 +246,7 @@ $slideHeight: 45vh;
       }
     }
     .portfolio__wrapper {
-      margin: 2rem 0 2rem 1rem;
+      margin: 2rem 0 2rem 2rem;
       display: flex;
       overflow: auto hidden;
       // overflow: hidden;
@@ -256,12 +254,15 @@ $slideHeight: 45vh;
         background-color: $black4;
         border-radius: 7px;
         border: 1px solid $black5;
+        @include trans(350ms);
+        &:hover {
+          background-color: $blaq3;
+        }
       }
       &::-webkit-scrollbar {
         height: 10px;
         width: max-content;
         background-color: $gray-b;
-        margin-top: 10px;
         border-radius: 7px;
       }
       .port__image {
@@ -269,8 +270,9 @@ $slideHeight: 45vh;
         & > img {
           height: $slideHeight;
           width: auto;
-          border-radius: 4px;
-          margin-right: 0.8rem;
+          border-radius: 8px;
+          margin-right: 0.95rem;
+          margin-bottom: 10px;
         }
         & > button {
           position: absolute;
@@ -344,16 +346,24 @@ $slideHeight: 45vh;
         padding-top: 2.8rem;
       }
       > div {
-        width: 70vw;
+        width: 65vw;
+        margin-left: 0.5rem;
         @include flex;
       }
       input {
-        padding: 6px 12px;
-        border-radius: 4px;
-        border: 1.5px solid $gray-a;
+        padding: 10px 12px;
+        border-radius: 7px;
+        border: 1.8px solid $gray-e;
         width: 50vw;
         &::placeholder {
           font-family: Gills;
+          font-size: 0.9rem;
+        }
+        &:focus-visible,
+        &:focus-within,
+        &:focus {
+          outline: none !important;
+          border: 1.8px solid $black5;
         }
       }
       .actions {
@@ -453,17 +463,22 @@ $slideHeight: 45vh;
         // 	margin-right: 40px;
       }
     }
-    $revWidth: 200px;
+    $revWidth: 250px;
     .review {
-      padding: 1.2rem 2rem 2.5rem;
-      @include flex;
+      padding: 2.2rem 2rem 2.5rem;
+      @include flex($align: flex-start);
       // gap: 2rem;
+      overflow: auto hidden;
       .reev {
+        margin-right: 2rem;
         width: 22vw;
         .reev__Image {
           margin: 0 auto 0.7rem;
           width: $revWidth;
           height: $revWidth;
+          width: auto;
+          // height: auto;
+
           object-fit: contain;
           // &> img{
           @include flex($jus: center);
@@ -493,7 +508,7 @@ $slideHeight: 45vh;
           border: none;
           border-radius: 70px;
           font-size: 0.8rem;
-          @include trans;
+          @include trans(150ms);
           &:hover {
             color: $gold3;
             font-size: 0.825rem;
@@ -528,6 +543,21 @@ $slideHeight: 45vh;
           }
         }
       }
+      &::-webkit-scrollbar-thumb {
+        background-color: $black4;
+        border-radius: 7px;
+        border: 1px solid $black5;
+        @include trans(350ms);
+        &:hover {
+          background-color: $blaq3;
+        }
+      }
+      &::-webkit-scrollbar {
+        height: 10px;
+        width: max-content;
+        background-color: $gray-b;
+        border-radius: 7px;
+      }
     }
     .AdminAbout {
       header {
@@ -548,6 +578,26 @@ $slideHeight: 45vh;
         word-spacing: 2.5px;
         &::first-letter {
           padding-left: 2rem;
+        }
+      }
+      button {
+        @include imageBtn;
+        // right: 0;
+        // top: 0;
+        position: static;
+        padding: 9px 8px 5px;
+        transition: all 250ms ease-out;
+        & svg {
+          width: 18px;
+          height: 18px;
+        }
+        &:hover {
+          color: $black5;
+        }
+        &:focus,
+        &:focus-visible,
+        &:focus-within {
+          color: $gold;
         }
       }
     }
@@ -616,12 +666,11 @@ $slideHeight: 45vh;
     transition: all 170ms ease-in-out;
     align-items: center;
     &:hover {
-      //   cursor: pointer;
+      cursor: pointer;
       background: linear-gradient($black2, $blaq);
       color: $gold3;
     }
   }
-
   h2 {
     font-family: Gills;
     font-size: 2rem;
@@ -631,6 +680,9 @@ $slideHeight: 45vh;
   span {
     margin: 0 auto 1.5rem 8rem;
     display: inline-block;
+  }
+  input::-webkit-file-upload-button {
+    padding: 2rem 1rem;
   }
 }
 

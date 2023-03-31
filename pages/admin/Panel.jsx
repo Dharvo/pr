@@ -23,12 +23,12 @@ import Slides from "../../components/slides/Slides";
 import Portfolio from "../../components/portfolio/Portfolio";
 import AdminContact from "components/contact/AdminContact";
 import AdminReviews from "components/reviews/AdminReviews";
-import AdminAbout from "components/about/About";
 import Options from "components/Options";
 import { BsBrightnessLow, BsShieldLockFill } from "react-icons/bs";
 import { TbLogout } from "react-icons/tb";
 import { MdOutlineLogout } from "react-icons/md";
 import ErrorBoundary from "components/ErrorBoundary";
+import AdminAbout from "components/about/About";
 // const Reviews = collection(fireStore, 'Reviews')
 // console.log(Reviews)
 // import { removeUserCookie, setUserCookie, getUserFromCookie } from '../../firebase/auth/UserCookies'
@@ -131,7 +131,7 @@ const Panel = () => {
       <AdminContact />
       <AdminReviews />
       <AdminAbout />
-      <Options name="Change Password" icon={() => <BsShieldLockFill />} />
+      {/* <Options name="Change Password" icon={() => <BsShieldLockFill />} /> */}
       <Options name="Theme" icon={() => <BsBrightnessLow />} />
       <Options name="Log Out" icon={() => <MdOutlineLogout />} />
       <UbuntuPage />
