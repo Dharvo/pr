@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Loading from "./Loading";
 import Image from "next/image";
+import ImgModal from "./ImgModal";
 
 const fetcher = async () => {
   //   const slidesCollection = collection(firestore, "Slides");
@@ -71,12 +72,14 @@ const Home = () => {
           console.log(slideObj.visible);
           if (slideObj.visible)
             return (
-              <Image
-                src={slideObj.imgLink}
-                alt={`${slideObj.name}-IMAGE`}
-                width={700}
-                height={700}
-              />
+              <ImgModal>
+                <Image
+                  src={slideObj.imgLink}
+                  alt={`${slideObj.name}-IMAGE`}
+                  width={700}
+                  height={700}
+                />
+              </ImgModal>
             );
           return null;
         })}

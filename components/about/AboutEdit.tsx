@@ -41,16 +41,19 @@ type stateProps = {
 };
 
 const AdminEdit = ({ id, showEdit, setShowEdit, content }: stateProps) => {
-  const [aboutValue, set] = useState<string>("");
+  const [aboutValue, setAboutValue] = useState<string>("");
   const [focusName, setFocusName] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     // first
-    set(content);
+    console.log("content", content);
+    console.log("INITIAL", aboutValue);
+    setAboutValue(content);
     // return () => {
     // second
     // }
   }, []);
+  console.log("SECOND", aboutValue);
 
   const editAboutContent = async (e: any) => {
     e.preventDefault();
@@ -58,13 +61,14 @@ const AdminEdit = ({ id, showEdit, setShowEdit, content }: stateProps) => {
 
     // console.log(e);
     // console.log(e.target.value);
-    // console.log(aboutValue);
+    console.log(aboutValue);
     // const updateSlide = async (ImgShudBVisible: boolean, docId: string) => {
     //Create Slide from firestore
     const NewContent = doc(firestore, `About/${id}`);
     // console.log("Slide to Update", Slide);
     // set local variable to switch
     //Try to update doc
+
     try {
       // alert("I will update slide");
       await updateDoc(NewContent, {
@@ -101,17 +105,21 @@ const AdminEdit = ({ id, showEdit, setShowEdit, content }: stateProps) => {
               label="About"
               placeholder="Change your About Section"
               value={aboutValue}
-              setValue={set}
+              setValue={setAboutValue}
               focus={focusName}
               setFocus={setFocusName}
               icon={<BiRename />}
               pass={false}
               textare={true}
             />
+
             <input
               type="submit"
               value="Submit"
-              disabled={loading ? true : false}
+              style={{
+                cursor: loading ? "not-allowed" : "pointer",
+              }}
+              disabled={loading}
             />
           </form>
         </div>

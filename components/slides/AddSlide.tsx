@@ -212,6 +212,8 @@ const AddSlide = ({ show, setShown }: modal["props"]) => {
               focus={focusName}
               setFocus={setFocusName}
               icon={<BiRename />}
+              pass={false}
+              textare={false}
             />
             <input type="file" name={name} id={`${name}-ID`} />
             <input

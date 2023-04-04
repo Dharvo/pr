@@ -30,13 +30,13 @@ type Props = {
 const AddPort = ({ id, portName, show, setShown }: Props) => {
   const [name, setName] = useState<string>("");
   const [focusName, setFocusName] = useState<boolean>(false);
-  // const [uploading, setUploading] = useState<boolean>(false);
+  const [uploading, setUploading] = useState<boolean>(false);
   const [imgUrl, setImgUrl] = useState<string>("");
   const [progresspercent, setProgresspercent] = useState<number>(0);
 
   const createPortImage = async (e: any) => {
     e.preventDefault();
-    // setUploading(true);
+    setUploading(true);
     const file = e.target[1]?.files[0];
     if (!name) {
       toast.error("Please Add an Image Name");
@@ -75,7 +75,7 @@ const AddPort = ({ id, portName, show, setShown }: Props) => {
                   setImgUrl("");
                   setShown(!show);
                   setProgresspercent(0);
-                  // setUploading(false);
+                  setUploading(false);
                   window.location.reload();
                 }, 5000)
               );
@@ -127,6 +127,7 @@ const AddPort = ({ id, portName, show, setShown }: Props) => {
       // await updateDoc(PortfolioRef, {
       //     regions: arrayRemove("east_coast")
       // });
+      setUploading(false);
     } catch (error) {
       console.log(error);
     }
@@ -152,9 +153,17 @@ const AddPort = ({ id, portName, show, setShown }: Props) => {
             setFocus={setFocusName}
             icon={<BiRename />}
             pass={false}
+            textare={false}
           />
           <input type="file" name={name} id={`${name}-ID`} />
-          <input type="submit" value="Submit" />
+          <input
+            type="submit"
+            value="Submit"
+            style={{
+              cursor: uploading ? "not-allowed" : "pointer",
+            }}
+            disabled={uploading}
+          />
         </form>
         <div
           style={{

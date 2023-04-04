@@ -163,6 +163,7 @@ const AddReview = ({ show, set }: Props) => {
               setFocus={setFocusName}
               icon={<BiRename />}
               pass={false}
+              textare={false}
             />
             <Input
               label="Comments"
@@ -173,6 +174,7 @@ const AddReview = ({ show, set }: Props) => {
               setFocus={setFocusComment}
               icon={<BiRename />}
               pass={false}
+              textare={false}
             />
             <input type="file" name={clientName} id={`${clientName}-ID`} />
             <input

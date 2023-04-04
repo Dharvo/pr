@@ -682,7 +682,27 @@ $slideHeight: 45vh;
     display: inline-block;
   }
   input::-webkit-file-upload-button {
-    padding: 2rem 1rem;
+    // padding: 2rem 1rem;
+    margin-right: 2rem;
+    padding: 0.7rem 2.5rem !important;
+    background: linear-gradient($black4, $black22);
+    border: none !important;
+    border-radius: 7px;
+    height: auto !important;
+    color: $white70;
+    font-size: 15px;
+    font-family: "Gills";
+    // margin: 1.8rem auto;
+    // width: fit-content !important;
+    // justify-self: center;
+    // display: flex;
+    transition: all 150ms ease-in-out;
+    align-items: center;
+    &:hover {
+      cursor: pointer;
+      background: linear-gradient($black2, $blaq);
+      color: $gold3;
+    }
   }
 }
 

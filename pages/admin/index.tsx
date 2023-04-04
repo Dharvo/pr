@@ -1,37 +1,37 @@
-import Authenticate from './Authenticate'
-import Footer from '../../components/Footer'
+import Authenticate from "./Authenticate";
+import Footer from "../../components/Footer";
 // import Loading from 'components/Loading'
-import UbuntuPage from '../../components/Ubuntu'
-import React from 'react'
-import Link from 'next/link'
-import styles from '../../styles/Admin/Admin.module.scss'
+import UbuntuPage from "../../components/Ubuntu";
+import React from "react";
+import Link from "next/link";
+import styles from "../../styles/Admin/Admin.module.scss";
 //  console.log(initFirebase())
 function Admin() {
-	return (
-		<section id={styles.admin}>
-			{/* <p className={styles.logo}> */}
-			<p className='logo'>
-				<Link passHref href='./'>
-					pr
-				</Link>
-			</p>
-			<h1>Please Identify Yourself</h1>
-			<Authenticate />
-			<UbuntuPage />
-		</section>
-	)
+  return (
+    <section id={styles.admin}>
+      {/* <p className={styles.logo}> */}
+      <p className="logo">
+        <Link passHref href="./">
+          pr
+        </Link>
+      </p>
+      <h1>Please Identify Yourself</h1>
+      <Authenticate />
+      <UbuntuPage />
+    </section>
+  );
 }
 
-export default Admin
+export default Admin;
 
 Admin.getLayout = function PageLayout(page: React.FC) {
-	return (
-		<>
-			{page}
-			<Footer />
-		</>
-	)
-}
+  return (
+    <>
+      {page}
+      <Footer />
+    </>
+  );
+};
 
 // import { useState } from 'react'
 

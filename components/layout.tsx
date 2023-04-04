@@ -3,33 +3,43 @@ import Footer from "./Footer";
 import LeftPanel from "./LeftPanel";
 import Nav from "./Nav";
 import styles from "../styles/Home/index.module.scss";
-import ReactDOM from "react-dom";
+import { useThemeContext } from "../context/Theme";
+import { useNavbarContext } from "../context/NavContext";
 
 type Props = {
   children: React.ReactNode;
-  setDarkTheme: Function;
+  //   setDarkTheme: Function;
 };
 function Layout(props: Props) {
-  const [currentNav, set] = useState<string>("/");
-  const navs: string[] = ["", "about", "portfolio", "contact"];
+  // function Layout(props) {
+  // const [currentNav, set] = useState<string>("/");
+  // const navs: string[] = ["", "about", "portfolio", "contact"];
+  const [darkTheme] = useThemeContext();
+  const [navs, currentNav, setNav] = useNavbarContext();
 
   useEffect(() => {
-    set(window.location.pathname);
-  }, [window.location.pathname]);
+    setNav(window.location.pathname);
+  }, [window.location.pathname, currentNav]);
 
   // console.log();
   console.log(currentNav);
   // console.log(window.location.hostname);
   // console.log(ReactDOM.findDOMNode.);
   return (
-    <>
+    // <>
+    <div className="body" id={darkTheme ? styles.Dark : styles.Light}>
       <div className={styles.navbar}>
-        <p className={styles.logo} onClick={() => set("/")}>
+        <p
+          className={`${styles.logo} ${
+            currentNav === "/about" ? styles.edit : ""
+          }`}
+          onClick={() => setNav("/")}
+        >
           pr
         </p>
 
         <div className={styles.navs}>
-          {navs.map((nav) => (
+          {navs.map((nav: any) => (
             <Nav
               key={nav}
               name={nav}
@@ -38,10 +48,11 @@ function Layout(props: Props) {
           ))}
         </div>
       </div>
-      <LeftPanel set={props.setDarkTheme} />
+      <LeftPanel />
+      {/* <LeftPanel set={props.setDarkTheme} /> */}
       {props.children}
       <Footer />
-    </>
+    </div>
   );
 }
 

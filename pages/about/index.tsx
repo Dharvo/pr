@@ -1,25 +1,45 @@
-import React from 'react'
-import Footer from '../../components/Footer'
-import Reviews from '../../components/Reviews'
-import TopProjects from '../../components/TopProjects'
-
+import React from "react";
+import Footer from "../../components/Footer";
+import Reviews from "../../components/Reviews";
+import TopProjects from "../../components/TopProjects";
+import AboutBg from "components/about/AboutBg";
+import AboutPonle from "components/about/AboutPonle";
+import styles from "../../styles/About/About.module.scss";
+import { useNavbarContext } from "context/NavContext";
+import router from "next/router";
+import { RiContactsFill } from "react-icons/ri";
+import Stats from "components/Stats";
+// import { AiOutlineWechat } from "react-icons/ai";
 const About = () => {
-	return (
-		<div id='about'>
-			<h1>ponle richard oluwagbenga</h1>
-			<h4>Photogrpaher</h4>
-			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis facilis, recusandae ea
-				maxime vitae distinctio dolorem accusamus! Asperiores, cupiditate. Minus est nulla
-				voluptatibus dolor ex tempora. Consectetur ullam eos autem officia, et tempore laboriosam!
-				Eius dolores dolor aspernatur vitae? A placeat libero ipsam adipisci ducimus maiores quae?
-				A, ab perspiciatis!
-			</p>
-			<button>Find out more</button>
-			<TopProjects />
-			<Reviews />
-		</div>
-	)
-}
+  const [navs, currentNav, setNav] = useNavbarContext();
+  return (
+    <div id={styles.about}>
+      <AboutBg />
+      <div className={styles.about__content}>
+        <div className={styles.name}>
+          <h1>Ponle Richard OluwaGbenga</h1>
+          <h4>Photographer</h4>
+        </div>
+        <AboutPonle />
+        <button
+          className={styles.contact__button}
+          onClick={() => {
+            // setNav("/contact");
+            router.push("/contact");
+          }}
+        >
+          Contact Me
+          <span>
+            <RiContactsFill />
+            {/* <AiOutlineWechat /> */}
+          </span>
+        </button>
+        <Stats />
+      </div>
+      <TopProjects />
+      <Reviews />
+    </div>
+  );
+};
 
-export default About
+export default About;

@@ -143,12 +143,13 @@ export default Panel;
 // Panel.getPlainLayout =
 Panel.getLayout = function PageLayout(page) {
   return (
-    <>
+    // <div className={styles.body}>
+    <div className="body">
       {/* <ErrorBoundary> */}
       {page}
       <Footer />
       {/* </ErrorBoundary> */}
-    </>
+    </div>
   );
 };
 

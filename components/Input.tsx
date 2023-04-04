@@ -33,6 +33,7 @@ const Input = ({
       </label>
       {textare ? (
         <textarea
+          className="textarea"
           name={label}
           id={label}
           cols={30}

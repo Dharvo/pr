@@ -1,13 +1,16 @@
-import React from 'react'
+import React from "react";
+import styles from "../styles/About/About.module.scss";
 
 function TopProjects() {
-	return (
-		<div>
-			<h2>TopProjects</h2>
-			{/* ProjectSlide /> */}
-			Fine Dining .... images 1,2,3 Urban .... images 1,2,3 Vibesxpensive .... images 1,2,3
-		</div>
-	)
+  return (
+    <div id={styles.TopProjects}>
+      <h2>Top Projects</h2>
+      {/* ProjectSlide /> */}
+      {/* TopProjectWrapper  */}
+      Fine Dining .... images 1,2,3 Urban .... images 1,2,3 Vibesxpensive ....
+      images 1,2,3
+    </div>
+  );
 }
 
-export default TopProjects
+export default TopProjects;

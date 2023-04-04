@@ -41,10 +41,12 @@ type modal = {
 const AddFolder = ({ show, setShown }: modal["props"]) => {
   const [name, setName] = useState<string>("");
   const [focusName, setFocusName] = useState<boolean>(false);
+  const [uploading, setUploading] = useState<boolean>(false);
 
   const createFolder = async (e: any) => {
     // {	// const handleSubmit = (e) => {
     e.preventDefault();
+    setUploading(true);
 
     // 	const file = e.target[1]?.files[0]
     if (!name) {
@@ -89,7 +91,10 @@ const AddFolder = ({ show, setShown }: modal["props"]) => {
           .catch((err) => {
             console.log(`Error Found: `, err);
           })
-          .finally(() => toast.success("Successfully Created Folder"));
+          .finally(() => {
+            toast.success("Successfully Created Folder");
+            setUploading(false);
+          });
 
     //CLEAR INOUT, CLOSE MODAL
 
@@ -166,6 +171,7 @@ const AddFolder = ({ show, setShown }: modal["props"]) => {
   const closeModal = () => {
     setShown(!show);
     setName("");
+    setUploading(false);
   };
 
   return (
@@ -192,8 +198,16 @@ const AddFolder = ({ show, setShown }: modal["props"]) => {
               setFocus={setFocusName}
               icon={<BiRename />}
               pass={false}
+              textare={false}
             />
-            <input type="submit" value="Create" />
+            <input
+              type="submit"
+              value="Create"
+              style={{
+                cursor: uploading ? "not-allowed" : "pointer",
+              }}
+              disabled={uploading}
+            />
           </form>
         </div>
       </ErrorBoundary>

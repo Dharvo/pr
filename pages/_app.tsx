@@ -1,3 +1,5 @@
+import { ThemeProvider } from "../context/Theme";
+import { NavbarProvider } from "../context/NavContext";
 import Head from "next/head";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
@@ -21,8 +23,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   // const getLayout = Component.getLayout ?? ((page) => <Layout theme={defaultTheme}>{page}</Layout>)
   const [initialRenderComplete, setInitialRenderComplete] =
     useState<boolean>(false);
-  const [darkTheme, setDarkTheme] = useState<boolean>(false);
+  // const [darkTheme, setDarkTheme] = useState<boolean>(false);
   // This useEffect will only run once, during the first render
+  // const [darkTheme] = useThemeContext();
   useEffect(() => {
     // Updating a state causes a re-render
     setInitialRenderComplete(true);
@@ -33,7 +36,12 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   }
   const getLayout =
     Component.getLayout ??
-    ((page) => <Layout setDarkTheme={setDarkTheme}>{page}</Layout>);
+    ((page) => (
+      // <div className="body" id={darkTheme ? styles.Dark : styles.Light}>
+      <Layout>{page}</Layout>
+      // </div>
+    ));
+  // ((page) => <Layout setDarkTheme={setDarkTheme}>{page}</Layout>);
   // const getPlainLayout =
   // 	Component.getLayout ??
   // 	((page) => <div className={`${defaultTheme ? 'Light' : 'Dark'}`}>{page}</div>)
@@ -56,10 +64,24 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <div className="body" id={darkTheme ? styles.Dark : styles.Light}>
-        {getLayout(<Component {...pageProps} />)}
+      {/* <div className="body" id={darkTheme ? styles.Dark : styles.Light}> */}
+      <>
+        <ThemeProvider>
+          <NavbarProvider>
+            {(values: any) => {
+              console.log(values);
+            }}
+            {getLayout(<Component {...pageProps} />)}
+          </NavbarProvider>
+        </ThemeProvider>
         <div id="portal" />
-      </div>
+      </>
+      {/* </div> */}
+      {/* export default function MyApp({ Component, pageProps }) {
+        return (
+            <Component {...pageProps} />
+        );
+      } */}
       {/* <div id='portal' className={`${defaultTheme ? 'Light' : 'Dark'}`} /> */}
     </>
   );

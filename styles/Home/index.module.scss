@@ -7,19 +7,22 @@
     .logo {
       font-family: Cast;
       text-transform: uppercase;
-      padding-left: 0.4rem;
+      padding-left: 0.7rem;
       font-size: 3rem;
-      @include trans(250ms);
+      @include trans(220ms);
       &:hover {
         cursor: pointer;
-        color: $gold;
+        color: $gold2;
+      }
+      &.edit {
+        color: white;
       }
     }
     .navs {
       // @include flex;
       & > a {
         text-transform: uppercase;
-        margin-right: 1.5rem;
+        margin-right: 3rem;
         font-family: Gills;
         text-decoration: none;
         letter-spacing: 0.2px;
@@ -96,17 +99,55 @@
     position: absolute;
     top: 10vh;
     left: 0;
-    // padding-left: 0.4rem;
-    height: 80vh;
-    width: 4vw;
+    // padding-bottom: 14rem;
+    height: 90vh;
+    width: 5.5vw;
     background: white;
-    @include flex($dir: column, $jus: center);
+    @include flex($dir: column, $jus: flex-end);
+    &.edit {
+      background: none;
+      & > div {
+        // margin-bottom: 1.4rem;
+        // padding: 8px 8px 5px;
+        a {
+          color: $white90 !important;
+        }
+        // &:first-of-type {
+        //   margin-bottom: 7rem;
+        // }
+        // &:last-of-type {
+        //   padding-bottom: 2rem;
+        // }
+        &:hover {
+          background-color: $black2;
+          // cursor: pointer;
+          // border-radius: 500px;
+          & svg {
+            color: $blaq3;
+            // transform: scale(1.15);
+          }
+        }
+        svg {
+          color: $white90 !important;
+          // width: 1.3rem;
+          // height: 1.3rem;
+          // @include trans(200ms);
+          // &:hover {
+          // }
+        }
+      }
+    }
     & > div {
-      margin-bottom: 1.2rem;
-      color: $black4;
+      margin-bottom: 1.4rem;
       padding: 8px 8px 5px;
+      a {
+        color: $black4 !important;
+      }
       &:first-of-type {
-        margin-bottom: 3rem;
+        margin-bottom: 7rem;
+      }
+      &:last-of-type {
+        margin-bottom: 3.5rem;
       }
       &:hover {
         background-color: #f8f8f8;
@@ -118,11 +159,10 @@
         }
       }
       svg {
+        color: $black4 !important;
         width: 1.3rem;
         height: 1.3rem;
-        @include trans(150ms);
-        &:hover {
-        }
+        @include trans(200ms);
       }
     }
   }
@@ -169,19 +209,41 @@
         //   border-radius: 7px;
         display: none !important;
       }
-
-      img {
-        margin-right: 1.2rem;
-        height: 85vh;
-        width: auto;
-        @include trans(150ms);
-        border-radius: 3px;
-        &:hover {
-          border-radius: 3px;
-          box-shadow: 0 0 12px 0.5px $gray-d;
-          transform: scale(0.995);
+      @keyframes PopEffect {
+        0% {
+          display: block;
+          transform: scale(1);
+        }
+        20% {
+          display: none;
+          transform: scale(0.85);
+        }
+        70% {
+          transform: scale(1.5);
+          display: block;
+        }
+        100% {
+          display: inline-block;
+          transform: scale(1.15);
         }
       }
+
+      img {
+        margin-right: 1.4rem;
+        height: 85vh;
+        width: auto;
+        @include trans(175ms);
+        border-radius: 3px;
+        z-index: 2;
+        &:hover {
+          box-shadow: 0 0 12px 0.025px $white;
+          // animation: PopEffect 1.5s ease-in 0 forwards;
+          transform: scale(0.97);
+          border-radius: 7px;
+          // animation: PopEffect 1.5s ease-in 0 1 normal forwards;
+        }
+      }
+
       // &::-webkit-scrollbar {
       //   // display: none;
       //   background: aquamarine;

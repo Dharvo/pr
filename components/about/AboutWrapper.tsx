@@ -56,7 +56,7 @@ const AboutWrapper = ({ showEdit, setShowEdit }: modalProps) => {
       </>
     );
   }
-  console.log(data);
+  // console.log(data);
   // if (content == '') {
   // toast.loading()
   // 	return (
@@ -67,6 +67,7 @@ const AboutWrapper = ({ showEdit, setShowEdit }: modalProps) => {
   // 		</>
   // 	)
   // }
+  console.log(data[0]?.content);
   return (
     <p>
       <b> About Ponle Richard</b>
