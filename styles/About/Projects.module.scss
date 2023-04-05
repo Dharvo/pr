@@ -1,0 +1,71 @@
+@import "../colors";
+#TopProjects {
+  max-width: 45vw;
+  margin: 0 2.5rem 0 auto;
+  //   height: 85vh;
+  @include flex($dir: column, $align: flex-end, $jus: flex-end);
+
+  h2 {
+    // color: #000;
+    // text-decoration: none;
+    font-family: Cast;
+    color: $blaq;
+    font-size: 3.5rem;
+    // text-align: end;
+    // padding: 3rem 1rem 0 0;
+    font-weight: 500;
+    margin: 5rem 2rem -0.2rem auto;
+  }
+  .topProjectsWrapper {
+    max-width: 44vw;
+    // @include flex($dir: column);
+    .projectWrapper {
+      @include flex;
+
+      .title {
+        width: 50px;
+        // height: 80px;
+        // max-width: 70px;
+        p {
+          font-size: 1.075rem;
+          /* transform: rotateZ(-90deg); */
+          /* width: max-content; */
+          writing-mode: tb-rl;
+          font-family: Gills;
+          font-weight: 600;
+          width: max-content;
+          //   writing-mode: vertical-rl;
+          //   text-orientation: upright;
+          //   transform: rotateZ(-90deg);
+        }
+      }
+    }
+    .ImageSlide {
+      padding: 2rem 0.15rem 0.1rem;
+      @include flex;
+      position: relative;
+      overflow: auto hidden;
+      @include scrollDesign;
+
+      img {
+        width: auto !important;
+        height: 200px !important;
+        border-radius: 3px;
+        margin-right: 0.8rem;
+        object-fit: contain;
+        justify-self: center;
+        margin-bottom: 10px;
+        transition: all 250ms ease-in-out;
+        &:first-child {
+          margin-left: 0.2rem;
+        }
+        &:hover {
+          box-shadow: 0 0 12px 0.5px $gray-d;
+          :global(img) {
+            transform: scale(1.025);
+          }
+        }
+      }
+    }
+  }
+}
