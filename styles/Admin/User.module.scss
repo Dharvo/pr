@@ -54,8 +54,8 @@ $slideHeight: 45vh;
         overflow: hidden;
         height: $slideHeight;
         :global(img) {
-          height: $slideHeight;
           width: auto;
+          height: $slideHeight;
           object-fit: contain;
           justify-self: center;
           transition: all 250ms ease-in-out;
@@ -250,21 +250,23 @@ $slideHeight: 45vh;
       display: flex;
       overflow: auto hidden;
       // overflow: hidden;
-      &::-webkit-scrollbar-thumb {
-        background-color: $black4;
-        border-radius: 7px;
-        border: 1px solid $black5;
-        @include trans(350ms);
-        &:hover {
-          background-color: $blaq3;
-        }
-      }
-      &::-webkit-scrollbar {
-        height: 10px;
-        width: max-content;
-        background-color: $gray-b;
-        border-radius: 7px;
-      }
+      @include scrollDesign;
+
+      // &::-webkit-scrollbar-thumb {
+      //   background-color: $black4;
+      //   border-radius: 7px;
+      //   border: 1px solid $black5;
+      //   @include trans(350ms);
+      //   &:hover {
+      //     background-color: $blaq3;
+      //   }
+      // }
+      // &::-webkit-scrollbar {
+      //   height: 10px;
+      //   width: max-content;
+      //   background-color: $gray-b;
+      //   border-radius: 7px;
+      // }
       .port__image {
         position: relative;
         & > img {
@@ -543,21 +545,22 @@ $slideHeight: 45vh;
           }
         }
       }
-      &::-webkit-scrollbar-thumb {
-        background-color: $black4;
-        border-radius: 7px;
-        border: 1px solid $black5;
-        @include trans(350ms);
-        &:hover {
-          background-color: $blaq3;
-        }
-      }
-      &::-webkit-scrollbar {
-        height: 10px;
-        width: max-content;
-        background-color: $gray-b;
-        border-radius: 7px;
-      }
+      @include scrollDesign;
+      // &::-webkit-scrollbar-thumb {
+      //   background-color: $black4;
+      //   border-radius: 7px;
+      //   border: 1px solid $black5;
+      //   @include trans(350ms);
+      //   &:hover {
+      //     background-color: $blaq3;
+      //   }
+      // }
+      // &::-webkit-scrollbar {
+      //   height: 10px;
+      //   width: max-content;
+      //   background-color: $gray-b;
+      //   border-radius: 7px;
+      // }
     }
     .AdminAbout {
       header {

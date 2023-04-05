@@ -67,3 +67,21 @@ $gold3: #c7a80f;
 @mixin trans($dig: 450ms) {
   transition: all $dig ease-in-out;
 }
+
+@mixin scrollDesign {
+  &::-webkit-scrollbar-thumb {
+    background-color: $black4;
+    border-radius: 7px;
+    border: 1px solid $black5;
+    @include trans(350ms);
+    &:hover {
+      background-color: $blaq3;
+    }
+  }
+  &::-webkit-scrollbar {
+    height: 10px;
+    width: max-content;
+    background-color: $gray-b;
+    border-radius: 7px;
+  }
+}

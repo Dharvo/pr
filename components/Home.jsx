@@ -66,7 +66,7 @@ const Home = () => {
   }
   return (
     <div id={styles.home}>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <div className={styles.home__slides}>
         {data?.map((slideObj) => {
           console.log(slideObj.visible);

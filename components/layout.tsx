@@ -4,6 +4,7 @@ import LeftPanel from "./LeftPanel";
 import Nav from "./Nav";
 import styles from "../styles/Home/index.module.scss";
 import { useThemeContext } from "../context/Theme";
+import router from "next/router";
 import { useNavbarContext } from "../context/NavContext";
 
 type Props = {
@@ -33,7 +34,7 @@ function Layout(props: Props) {
           className={`${styles.logo} ${
             currentNav === "/about" ? styles.edit : ""
           }`}
-          onClick={() => setNav("/")}
+          onClick={() => router.push("/")}
         >
           pr
         </p>

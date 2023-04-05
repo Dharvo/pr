@@ -1,5 +1,6 @@
 @import "../global.css";
 @import "../colors";
+
 #Light {
   .navbar {
     // padding: 1rem 0.5rem;
@@ -15,6 +16,7 @@
         color: $gold2;
       }
       &.edit {
+        z-index: 3;
         color: white;
       }
     }
@@ -105,16 +107,23 @@
     background: white;
     @include flex($dir: column, $jus: flex-end);
     &.edit {
+      z-index: 3;
       background: none;
       & > div {
-        // margin-bottom: 1.4rem;
+        margin-bottom: 6rem !important;
+        position: fixed;
         // padding: 8px 8px 5px;
         a {
           color: $white90 !important;
         }
-        // &:first-of-type {
-        //   margin-bottom: 7rem;
-        // }
+        &:nth-of-type(2n + 1) {
+          margin-bottom: 3rem !important;
+        }
+        &:first-of-type {
+          margin-bottom: 17rem !important;
+          //   margin-bottom: 7rem;
+          // position: sticky;
+        }
         // &:last-of-type {
         //   padding-bottom: 2rem;
         // }
@@ -193,7 +202,7 @@
       overflow: auto hidden;
       @include flex;
       // overflow: hidden;
-      // &::-webkit-scrollbar-thumb {
+      // &::- {
       //   background-color: $black4;
       //   border-radius: 7px;
       //   border: 1px solid $black5;
@@ -248,7 +257,7 @@
       //   // display: none;
       //   background: aquamarine;
       // }
-      // &::-webkit-scrollbar-thumb {
+      // &::- {
       //   background-color: $black4;
       //   border-radius: 7px;
       //   border: 1px solid $black5;
@@ -263,7 +272,7 @@
       //   background-color: $gray-b;
       //   border-radius: 7px;
       // }
-      // &::-webkit-scrollbar-thumb {
+      // &::- {
       //   background-color: $black4;
       //   border-radius: 7px;
       //   border: 1px solid $black5;

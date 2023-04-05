@@ -18,8 +18,8 @@
     bottom: 0;
     left: 0;
     clip-path: polygon(0% 0%, 100% 0%, 75% 100%, 0% 100%);
-    z-index: 0;
-    z-index: -1;
+    // z-index: 0;
+    z-index: 2;
   }
   .about__content {
     max-width: 45vw;
@@ -70,7 +70,8 @@
     color: $white70;
     font-size: 15px;
     font-family: Gills;
-    margin: -0.2rem 2.55rem 0.5rem auto;
+    margin: -0.2rem 2.55rem 3.5rem auto;
+
     // width: fit-content !important;
     // justify-self: end;
     // align-items: center;
@@ -134,24 +135,6 @@
         background: linear-gradient(-30deg, $black2, $blaq);
         color: $gold3;
       }
-    }
-  }
-
-  #TopProjects {
-    max-width: 45vw;
-    margin: 0 2rem 0 auto;
-    height: 85vh;
-    @include flex($dir: column, $align: flex-end, $jus: flex-end);
-
-    h2 {
-      // color: #000;
-      // text-decoration: none;
-      font-family: Cast;
-      color: $blaq;
-      font-size: 3.5rem;
-      // text-align: end;
-      // padding: 3rem 1rem 0 0;
-      font-weight: 500;
     }
   }
 }
