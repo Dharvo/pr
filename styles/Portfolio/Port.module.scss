@@ -1,0 +1,77 @@
+@import "../colors";
+
+#Portfolio {
+  padding: 2.6rem 3rem 2rem 7rem;
+  .masonary_wrapper {
+    @include flex($jus: space-around, $align: flex-start);
+    // flex-wrap: wrap;
+    // gap: 2rem;
+
+    //  MASONARY STUFF
+    .portfolio_masonry_grid {
+      display: flex;
+      margin-left: -30px;
+      width: auto;
+    }
+    .masonary_wrapper_column {
+      padding-left: 30px; /* gutter size */
+      background-clip: padding-box;
+    }
+    //  PORT BOX
+    .PortBox {
+      margin-bottom: 2.3rem;
+      width: 35vw;
+      height: -webkit-fill-available;
+      min-height: 30vw;
+      position: relative;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 0 25px 1px #fdfdfd, 0 5px 35px 3px #fafafa,
+        5px 10px 15px 1px #fefefe, 10px 10px 15px 1px #f9f9f9;
+      img {
+        // width: 300px;
+        // height: 300px;
+        object-fit: contain;
+        width: inherit;
+        height: auto;
+      }
+      .PortCover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        @include flex($jus: center);
+        // height: inherit;
+        // width: inherit;
+        @include trans(350ms);
+        background: linear-gradient(337deg, #0003, transparent);
+        p {
+          color: #ddd;
+          font-size: 3rem;
+          @include trans(350ms);
+          transform: scale(0);
+          font-family: Gills;
+          font-weight: 800;
+          text-align: center;
+        }
+      }
+      &:hover {
+        //   .PortCover:hover {
+        // .PortBox {
+        // cursor: pointer;
+        box-shadow: 0 0 25px 1px #f9f9f9, 0 5px 35px 3px #fafafa,
+          5px 10px 15px 1px #fefefe, 10px 10px 15px 1px #eee;
+
+        .PortCover {
+          cursor: pointer;
+          background: linear-gradient(337deg, $blaq2, $black5);
+          p {
+            transform: scale(1);
+            // }
+          }
+        }
+      }
+    }
+  }
+}

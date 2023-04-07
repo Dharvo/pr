@@ -6,6 +6,7 @@ import styles from "../styles/Home/index.module.scss";
 import { useThemeContext } from "../context/Theme";
 import router from "next/router";
 import { useNavbarContext } from "../context/NavContext";
+import Link from "next/link";
 
 type Props = {
   children: React.ReactNode;
@@ -17,27 +18,54 @@ function Layout(props: Props) {
   // const navs: string[] = ["", "about", "portfolio", "contact"];
   const [darkTheme] = useThemeContext();
   const [navs, currentNav, setNav] = useNavbarContext();
-
+  const p = window.location.pathname;
   useEffect(() => {
-    setNav(window.location.pathname);
-  }, [window.location.pathname, currentNav]);
+    //.indexOf("/")
+
+    // console.log(
+    //   "substring",
+    //   p.substring(
+    //     1,
+    //     p
+    //       .substring(1, p.length)
+    //       .indexOf("/") == -1
+    //       ? p.length
+    //       : p
+    //           .substring(1, p.length)
+    //           .indexOf("/") + 1
+    //   )
+    // );
+    setNav(
+      "/" +
+        p.substring(
+          1,
+          p.substring(1, p.length).indexOf("/") == -1
+            ? p.length
+            : p.substring(1, p.length).indexOf("/") + 1
+        )
+      // "/about"
+      // p
+    );
+  }, [p, currentNav]);
 
   // console.log();
-  console.log(currentNav);
+  // console.log(p);
+  // console.log(currentNav);
   // console.log(window.location.hostname);
   // console.log(ReactDOM.findDOMNode.);
   return (
     // <>
     <div className="body" id={darkTheme ? styles.Dark : styles.Light}>
       <div className={styles.navbar}>
-        <p
+        <Link
           className={`${styles.logo} ${
             currentNav === "/about" ? styles.edit : ""
           }`}
-          onClick={() => router.push("/")}
+          // onClick={() => router.push("/")}
+          href={"/"}
         >
           pr
-        </p>
+        </Link>
 
         <div className={styles.navs}>
           {navs.map((nav: any) => (

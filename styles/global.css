@@ -16,18 +16,19 @@
   padding: 0.3rem 1.5rem;
   text-transform: uppercase;
   width: fit-content;
+  text-decoration: none;
 }
-.logo a {
+a.logo {
   color: #000;
   text-decoration: none;
   font-family: Cast;
   font-size: 3vw;
   transition: all 100ms ease-in-out;
 }
-.logo a :visited {
+a.logo:visited {
   color: #000;
 }
-.logo a:hover {
+a.logo:hover {
   color: #ffd609;
 }
 

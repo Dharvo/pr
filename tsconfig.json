@@ -28,7 +28,8 @@
     "components/portfolio/PortfolioWrapper.jsx",
     "components/about/About.tsx",
     "components/contact/ContactOption.tsx",
-    "context/Theme.jsx"
+    "context/Theme.jsx",
+    "components/PortWrapper.jsx"
   ],
   "exclude": ["node_modules"]
 }

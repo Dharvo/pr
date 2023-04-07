@@ -10,6 +10,8 @@
       text-transform: uppercase;
       padding-left: 0.7rem;
       font-size: 3rem;
+      color: $blaq;
+      text-decoration: none;
       @include trans(220ms);
       &:hover {
         cursor: pointer;

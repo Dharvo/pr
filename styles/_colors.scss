@@ -85,3 +85,38 @@ $gold3: #c7a80f;
     border-radius: 7px;
   }
 }
+@mixin scrollDesignLight {
+  @include trans(250ms);
+
+  &::-webkit-scrollbar {
+    // opacity: 0;
+  }
+
+  // &:hover {
+  &::-webkit-scrollbar-thumb {
+    background-color: $gray-b;
+    border-radius: 6px;
+    border: 1px solid $gray-b;
+    height: 10px;
+    visibility: hidden;
+    @include trans(350ms);
+    &:hover {
+      background-color: $black4;
+    }
+  }
+  &::-webkit-scrollbar {
+    height: 10.5px;
+    width: max-content;
+    background-color: $gray-e;
+    border-radius: 5px;
+    // opacity: 0;
+    visibility: hidden;
+  }
+  &:hover {
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-thumb {
+      visibility: visible;
+      // opacity: 1;
+    }
+  }
+}
