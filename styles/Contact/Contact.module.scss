@@ -1,0 +1,124 @@
+@import "../colors";
+
+#Contact {
+  padding: 0 4rem 0rem 4.5rem;
+  // position: relative;
+  .Map {
+    position: relative;
+    img {
+      width: 89vw;
+      object-fit: cover;
+      height: 85vh;
+      border-radius: 3px;
+      filter: grayscale(0.75);
+    }
+    .pin {
+      width: fit-content;
+      position: absolute;
+      top: 25vh;
+      left: 30.8vw;
+      @include flex($jus: center, $dir: column);
+      svg {
+        font-size: 22px;
+        color: #111;
+        // margin: 0 4rem !important;
+      }
+      .pin_text {
+        width: 150px;
+        font-size: 14px;
+        font-family: "Gills";
+        color: #222;
+        text-align: center;
+      }
+    }
+  }
+  .Contact__form {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 32vw;
+    height: 65vh;
+    position: absolute;
+    right: 6.5rem;
+    top: 15vh;
+    padding: 1.4rem 0.5rem 2.2rem;
+    border: 1px solid #eee;
+    box-shadow: -3px -3px 15px 2px #ddd, 0 0 15px 2px #2221,
+      5px 5px 15px 2px #5554;
+
+    .form__group {
+      padding: 0.3rem 1rem 0.3rem;
+      border: 1px solid #fdfdfd;
+      border-radius: 7px;
+      margin: 0.8rem 1.2rem 1rem;
+      background: #fdfdfd;
+      @include trans(150ms);
+
+      .form__label {
+        font-family: Gills;
+        word-spacing: 0.5px;
+        padding-right: 10px;
+        width: 18%;
+        display: inline-block;
+        vertical-align: top;
+        padding-top: 5px;
+      }
+      input[type="text"],
+      textarea {
+        @include trans(250ms);
+        width: 70%;
+        padding: 9px 15px;
+        border-radius: 3px;
+        cursor: pointer !important;
+        border: 1px solid #fdfdfd;
+        background: #fdfdfd;
+        font-family: Gills;
+        font-size: 1rem;
+
+        &::placeholder {
+          font-family: Gills;
+          color: #2223;
+          font-size: 0.95rem;
+        }
+        &:focus-visible,
+        &:focus-within,
+        &:focus {
+          outline: none !important;
+          border: 1px solid $gray-e;
+          background-color: $gray-e;
+        }
+      }
+      &.focused {
+        background: #eee;
+        border: 1px solid #eee;
+      }
+    }
+    .btn {
+      padding: 0.8rem 4.5rem !important;
+      background: linear-gradient($black4, $black22);
+      border: none !important;
+      border-radius: 7px;
+      height: auto !important;
+      color: $white70;
+      font-size: 15px;
+      font-family: "Gills";
+      margin: 0.1rem auto;
+      // width: fit-content !important;
+      // justify-self: center;
+      display: flex;
+      transition: all 170ms ease-in-out;
+      align-items: center;
+      &:hover {
+        cursor: pointer;
+        background: linear-gradient($black2, $blaq);
+        color: $gold3;
+      }
+    }
+  }
+  .Contact_methods {
+    z-index: 3;
+    position: absolute;
+    bottom: 20vh;
+    left: 10vw;
+  }
+}

@@ -60,7 +60,7 @@ const PortBoxSub = ({ id, name, data, all }: boxType) => {
                   width={400}
                   height={400}
                 />
-                <Link href={`/portfolio/${name}`}>
+                <Link href={`/portfolio`}>
                   <div className={styles.PortCover}>
                     <p>{name}</p>
                   </div>

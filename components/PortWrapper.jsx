@@ -73,27 +73,29 @@ const PortWrapper = ({ PortName }) => {
   //
   return (
     // <div className={styled.masonary_wrapper}>
-    <Masonry
-      breakpointCols={{
-        default: 2,
-        900: 1,
-      }}
-      className="masonary_portWrapper"
-      // className={styled.masonary_portWrapper}
-      // columnClassName={styled.masonary_portWrapper_column}
-      columnClassName="masonary_portWrapper_column"
-    >
-      {data?.map((folder) => (
-        <PortBoxSub
-          key={folder.id}
-          id={folder.id}
-          name={folder.Title}
-          data={folder.Images}
-          all={selectedPort[0]?.id === folder.id}
-        />
-      ))}
-    </Masonry>
-    // </div>
+    <div id={styled.Portfolio}>
+      <Masonry
+        breakpointCols={{
+          default: 2,
+          900: 1,
+        }}
+        // className="masonary_portWrapper"
+        className={styled.masonary_portWrapper}
+        masonary_wrapper
+        columnClassName={styled.masonary_portWrapper_column}
+        // columnClassName="masonary_portWrapper_column"
+      >
+        {data?.map((folder) => (
+          <PortBoxSub
+            key={folder.id}
+            id={folder.id}
+            name={folder.Title}
+            data={folder.Images}
+            all={selectedPort[0]?.id === folder.id}
+          />
+        ))}
+      </Masonry>
+    </div>
   );
 };
 

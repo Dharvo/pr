@@ -2,18 +2,20 @@
 
 #Portfolio {
   padding: 2.6rem 3rem 2rem 7rem;
-  .masonary_wrapper {
+  .masonary_wrapper,
+  .masonary_portWrapper {
     @include flex($jus: space-around, $align: flex-start);
     // flex-wrap: wrap;
     // gap: 2rem;
 
     //  MASONARY STUFF
-    .portfolio_masonry_grid {
-      display: flex;
-      margin-left: -30px;
-      width: auto;
-    }
-    .masonary_wrapper_column {
+    // .portfolio_masonry_grid {
+    //   // display: flex;
+    //   // margin-left: -30px;
+    //   // width: auto;
+    // }
+    .masonary_wrapper_column,
+    .masonary_portWrapper_column {
       padding-left: 30px; /* gutter size */
       background-clip: padding-box;
     }
@@ -24,10 +26,14 @@
       height: -webkit-fill-available;
       min-height: 30vw;
       position: relative;
-      border-radius: 3px;
+      border-radius: 5px;
       overflow: hidden;
       box-shadow: 0 0 25px 1px #fdfdfd, 0 5px 35px 3px #fafafa,
         5px 10px 15px 1px #fefefe, 10px 10px 15px 1px #f9f9f9;
+      & span {
+        margin: 5rem 7rem;
+      }
+
       img {
         // width: 300px;
         // height: 300px;
@@ -72,6 +78,24 @@
           }
         }
       }
+    }
+  }
+}
+.CustomPort {
+  width: max-content;
+  font-family: Gills;
+  margin: 7rem auto;
+  line-height: 1.6;
+  text-align: center;
+  font-size: 3.5rem;
+  & span a {
+    @include trans(260ms);
+    font-size: 5rem;
+    color: $blaq;
+    text-decoration: none;
+    font-family: Cast;
+    &:hover {
+      color: $gold;
     }
   }
 }
