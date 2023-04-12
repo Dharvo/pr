@@ -105,7 +105,7 @@ id
       <div className={styles.topProjectsWrapper}>
         {data?.map((projectInfo) => (
           <Top
-            key={projectInfo.id}
+            key={projectInfo.Title}
             title={projectInfo.Title}
             images={projectInfo.Images}
           />

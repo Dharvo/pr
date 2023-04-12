@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import useSWR from "swr";
 import ContactOption from "./ContactOption";
 import { BsInstagram, BsTwitter } from "react-icons/bs";
-import { FaFacebookF } from "react-icons/fa";
+import { FaFacebookF, FaCopy } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 import { constants } from "buffer";
 import Loading from "components/Loading";
@@ -26,40 +26,40 @@ const fetcher = async () => {
 };
 const ContactMethod = () => {
   const { data, error, isValidating } = useSWR("Contact", fetcher);
-  const [fb, setFb] = useState("");
-  const [ig, setIg] = useState("");
-  const [tw, setTw] = useState("");
-  const [gm, setGm] = useState("");
+  // const [fb, setFb] = useState("");
+  // const [ig, setIg] = useState("");
+  // const [tw, setTw] = useState("");
+  // const [gm, setGm] = useState("");
 
   const contactArray = [
     {
       name: "Facebook",
       icon: () => <FaFacebookF />,
-      //   placeholder: "https://facebook.com/ponle-richard",
-      value: fb,
-      set: setFb,
+      details: "ponle-richard",
+      // value: fb,
+      // set: setFb,
     },
     {
       name: "Instagram",
-      value: ig,
-      set: setIg,
       icon: () => <BsInstagram />,
-      //   placeholder: "https://www.instagram.com/ponlerich.ard/",
+      details: "@ponlerich.ard",
+      // value: ig,
+      // set: setIg,
     },
     {
       name: "Twitter",
-      value: tw,
-      set: setTw,
       icon: () => <BsTwitter />,
+      details: "@ponle-richard",
       // shown={true}
-      //   placeholder: "https://twitter.com/ponle-richard",
+      // value: tw,
+      // set: setTw,
     },
     {
       name: "Gmail",
       icon: () => <SiGmail />,
-      value: gm,
-      set: setGm,
-      //   placeholder: "mailto://ponle-richard@gmail.com/",
+      details: "ponle-richard@gmail.com",
+      // value: gm,
+      // set: setGm,
     },
   ];
 
@@ -96,29 +96,51 @@ const ContactMethod = () => {
         <div className="contact__method"></div>
         <div className="contact__method"></div>
       </div>
-    </div> */}
-      {/* {data.map((contact) => {
-        //id, name, show, placeholder
-        // console.log(`${data[0].instagram}`);
+    </div> 
+      <div
+        title="Copy Twitter handle"
+        //CLICK TO CopY CONTACT DETAILS
+      >
+        {/* <p> Twitter </p> 
+        <div>
+          <BsTwitter />
+
+          </div>
+          <span>@ponlerichard_</span>
+      </div>
+    */}
+      {data?.map((contact) => {
         var arrValue = contactArray.filter(
           (cont) => cont.name.toLowerCase() === contact.name.toLowerCase()
         );
+        console.log(arrValue);
+        if (contact.show) {
+          return (
+            <div key={contact?.id}>
+              {arrValue[0]?.icon()}
+              <FaCopy />
+              {/* <p> {arrValue[0]?.name} </p> */}
+              <p> {contact?.name} </p>
+              <span>{arrValue[0]?.details}</span>
+            </div>
+          );
+        }
+        return null;
+        //id, name, show, placeholder
+        // console.log(`${data[0].instagram}`);
         // console.log(arrValue[0]?.icon);
-        return (
-          <ContactOption
-            key={contact.id}
-            name={contact.name}
-            //WHERE DATA.NAME === CONTACT
-            value={arrValue[0]?.value}
-            setValue={arrValue[0]?.set}
-            icon={arrValue[0]?.icon}
-            // shown={data[0]?.contact.name.toLowerCase()}
-            shown={contact.show}
-            placeholder={contact.placeholder}
-          />
-         
-        );
-      })} */}
+        // <ContactOption
+        //   key={contact.id}
+        //   name={contact.name}
+        //   //WHERE DATA.NAME === CONTACT
+        //   value={arrValue[0]?.value}
+        //   setValue={arrValue[0]?.set}
+        //   icon={arrValue[0]?.icon}
+        //   // shown={data[0]?.contact.name.toLowerCase()}
+        //   shown={contact.show}
+        //   placeholder={contact.placeholder}
+        // />
+      })}
     </div>
   );
 };

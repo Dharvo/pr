@@ -62,6 +62,7 @@
         display: inline-block;
         vertical-align: top;
         padding-top: 5px;
+        letter-spacing: 0.25px;
       }
       input[type="text"],
       textarea {
@@ -118,7 +119,63 @@
   .Contact_methods {
     z-index: 3;
     position: absolute;
-    bottom: 20vh;
+    bottom: 15vh;
     left: 10vw;
+    @include flex;
+    gap: 1.7rem;
+    > div {
+      background: $blaq2;
+      padding: 1.2rem 0.8rem;
+      border: 2px solid $blaq;
+      border-radius: 5px;
+      text-align: center;
+      @include trans(270ms);
+      position: relative;
+      // > div {
+      // }
+      span,
+      svg,
+      p {
+        color: $white70;
+        // color: $gold;
+      }
+      span,
+      p {
+        margin-bottom: 0.3rem;
+        letter-spacing: 0.25px;
+        font-family: Gills;
+        font-size: 0.95rem;
+      }
+      svg {
+        @include trans(200ms);
+        font-size: 1.2rem;
+        &:last-of-type {
+          position: absolute;
+          top: 5px;
+          right: 10px;
+          transform: scale(0.000001);
+          font-size: 0.75rem;
+        }
+      }
+      &:hover {
+        cursor: pointer;
+        background: $blaq;
+        box-shadow: 0 0 18px 0.01px $black4;
+        svg {
+          color: $gold;
+          &:last-of-type {
+            transform: scale(1);
+          }
+        }
+        span,
+        p {
+          color: $gold3;
+        }
+      }
+      &:title {
+        color: white;
+        background: #111;
+      }
+    }
   }
 }

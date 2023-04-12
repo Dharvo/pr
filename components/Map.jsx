@@ -35,11 +35,11 @@ const Map = ({ location, zoomLevel }) => {
   const { data, error, isValidating } = useSWR("map-api", fetcher);
   // console.log("data", data);
 
-  useEffect(() => {}, [isValidating]);
+  // useEffect(() => {}, [isValidating]);
 
   if (error) {
     // if (error || !data) {
-    toast.error(`An Error Pulling map-api: ${error?.message}`);
+    // toast.error(`An Error Pulling map-api: ${error?.message}`);
     return (
       <>
         <div className={styles.loading__div}>
