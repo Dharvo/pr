@@ -1,7 +1,10 @@
-###   [`Ponle Richard Photography`]
-[View Site](https://portfolio-page-7.web.app/)  Report Issue [`i`](https://github.com/Dharvo/PR/issues)
-
-This is portfolio project for the photographer, Ponle Oluwagbenga Richard based in Lagos, Nigeria. The project was created with [Next.js](https://nextjs.org/) a spin-off of React using [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+    <h1>Ponle Richard Photography</h1>
+[View Site](https://portfolio-page-7.web.app/) • Report Issue [`i`](https://github.com/Dharvo/PR/issues)
+</div>
+<br />
+---
+This is portfolio project for the photographer, Ponle Oluwagbenga Richard based in Lagos, Nigeria(https://en.wikipedia.org/wiki/Lagos_State). The project was created with [Next.js](https://nextjs.org/) a spin-off of React using [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Things Started
 In development mode:
@@ -12,7 +15,7 @@ npm run dev
 yarn dev
 ```
 Next, open [`Localhost Server`](https://localhost:3000/) with your browser to see the result. 
-# OR 
+OR 
 Go to [`Developement Server`](https://127.0.0.1:3000/) if the Localhost isn't working.
 
 You can editing the page by modifying the pages/`index.tsx`. The page with auto-update itself as you edit the file.
