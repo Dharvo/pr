@@ -16,9 +16,9 @@ const fetcher = async () => {
   const result = [];
   // try {
   // console.log(SlidesCollection);
+  // console.log(snapshot);
   await getDocs(SlidesCollection)
     .then((snapshot) => {
-      // console.log(snapshot);
       snapshot.docs.forEach((snapshot) => {
         result.push({ id: snapshot.id, ...snapshot.data() });
       });
