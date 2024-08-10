@@ -30,7 +30,7 @@ const ContactOption = ({
 
   useEffect(() => {
     setOpted(shown);
-  }, []);
+  }, [shown]);
 
   const activateOpt = async () => {
     //UPDATE SERVICE HERE

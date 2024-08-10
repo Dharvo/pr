@@ -46,7 +46,7 @@ function Layout(props: Props) {
       // "/about"
       // p
     );
-  }, [p, currentNav]);
+  }, [p,setNav, currentNav]);
 
   // console.log();
   // console.log(p);

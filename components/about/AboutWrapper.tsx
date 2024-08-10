@@ -16,11 +16,14 @@ type modalProps = {
   setShowEdit: Function;
 };
 const fetcher = async () => {
-  var result: { id: string }[] = [];
+  var result: { id: string; content: string }[] = [];
   await getDocs(AboutCollection)
     .then((snapshot) => {
       snapshot.docs.forEach((snapshot) => {
-        result.push({ id: snapshot.id, ...snapshot.data() });
+        result.push({
+          id: snapshot.id, ...snapshot.data(),
+          content: ""
+        });
       });
     })
     .catch(function (err) {
@@ -31,11 +34,12 @@ const fetcher = async () => {
 
 const AboutWrapper = ({ showEdit, setShowEdit }: modalProps) => {
   const { data, error, isValidating } = useSWR("about", fetcher);
+  let dataset = data?.length
   useEffect(() => {
     setTimeout(() => {
-      data?.length === 0 ? toast.error(`Oops You're Offline...`) : null;
+      dataset === 0 ? toast.error(`Oops You're Offline...`) : null;
     }, 2500);
-  }, [isValidating]);
+  }, [dataset, isValidating]);
 
   if (error) {
     toast.error(`Error : ${error?.message}`);

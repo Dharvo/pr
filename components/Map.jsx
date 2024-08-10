@@ -24,7 +24,9 @@ const fetcher = async () => {
   );
   // const data = await result.json();
   // console.log(result);
-  return <img src={result.url} alt="Map Loading..." />;
+  return <Image src={result.url} alt="Map Loading..." />;
+  //  <img  />;
+  // return <img src={result.url} alt="Map Loading..." />;
   // console.log();
   //  result;
 };

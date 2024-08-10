@@ -52,7 +52,10 @@ const AdminEdit = ({ id, showEdit, setShowEdit, content }: stateProps) => {
     // return () => {
     // second
     // }
-  }, []);
+  }, [
+    content,
+aboutValue
+  ]);
   console.log("SECOND", aboutValue);
 
   const editAboutContent = async (e: any) => {

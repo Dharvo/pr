@@ -47,7 +47,7 @@ const PortfolioWrapper = () => {
       !data ? null : setActiveFold(data[0]?.Title);
     }, 3000);
     // }, [data, activeFold, isValidating]);
-  }, [isValidating]);
+  }, [data,isValidating]);
   // console.log(activeFold);
   if (error) {
     // if (error || !data) {

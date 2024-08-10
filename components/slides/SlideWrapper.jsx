@@ -36,11 +36,12 @@ const fetcher = async () => {
 const SlideWrapper = () => {
   const { data, error, isValidating } = useSWR("slides", fetcher);
   const [show, setShown] = useState(false);
+  let dataset= data?.length;
   useEffect(() => {
     setTimeout(() => {
-      data?.length === 0 ? toast.error(`Oops You're Offline...`) : null;
+      dataset === 0 ? toast.error(`Oops You're Offline...`) : null;
     }, 2500);
-  }, []);
+  }, [dataset]);
 
   if (error) {
     toast.error(`Error : ${error?.message}`);

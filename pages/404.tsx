@@ -12,7 +12,7 @@ function page404() {
 				<span>404</span>
 				error
 			</h1>
-			<h4>Sorry, we couldn't find the page you're looking for</h4>
+			<h4>Sorry, we couldnt find the page you are looking for</h4>
 			<h3>Explore more Art instead</h3>
 			<Link href={'./'} passHref>
 				<button>go home</button>

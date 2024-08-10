@@ -5,7 +5,8 @@ type Props = {
 };
 const ImgModal = ({ children }: Props) => {
   return (
-    <div id="ImgModal" onClick={() => console.log(children?.props?.src)}>
+    <div id="ImgModal">
+    {/* <div id="ImgModal" onClick={() => console.log(children?.props?.src)}> */}
       {children}
     </div>
   );
