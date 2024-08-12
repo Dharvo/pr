@@ -13,7 +13,9 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 // var defaultAuth = firebase.auth
 // var defaultAuth =getAuth()
 import { initFirebase } from '../../firebase/firebaseConfig'
+
 initFirebase()
+
 
 const FirebaseAuthConfig = {
 	signInflow: 'popup',
