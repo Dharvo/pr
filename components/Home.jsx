@@ -104,7 +104,7 @@ const Home = () => {
       {guestSlides?.map((slide,i) => {
       //  console.log("slide",slide?.src);
       //  console.log("slide 1",Image1);
-      return <ImgModal>
+      return <ImgModal key={i}>
                 <Image
                   src={slide?.src}
                   alt={`IMAGE-${i}`}
