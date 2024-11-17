@@ -1,4 +1,5 @@
 <div align="center">
+    <img src="https://raw.githubusercontent.com/VybzTech/PR/b425dbf6d0482e3fbd0fda39e5f3957a1ef3b590/public/logo.svg" alt="PR Logo" />
     <h1 >Ponle Richard Photography</h1>
 <!-- <hr height='4px'/> -->
     •  <a href="https://portfolio-page-7.web.app/" target="_blank">View Site</a> •  <a href="https://github.com/Dharvo/PR/issues" target="_blank">Report Issue</a>   •
