@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+// import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { GoogleAuthProvider, EmailAuthProvider } from "firebase/auth";
 import { useRouter } from "next/router";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -90,7 +90,7 @@ const Authenticate = () => {
         <input type="submit" value="Authenticate" />
       </form>
       <div className={styles.googleLink}>
-        <StyledFirebaseAuth uiConfig={FirebaseAuthConfig} firebaseAuth={auth} />
+{/*         <StyledFirebaseAuth uiConfig={FirebaseAuthConfig} firebaseAuth={auth} /> */}
       </div>
       <p className={styles.home}>
         or Go <a href="./">Home</a>
